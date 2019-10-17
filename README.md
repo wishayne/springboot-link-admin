@@ -51,6 +51,11 @@ git clone https://github.com/252956/springboot-link-admin.git
 浏览器访问 http://localhost:8888/helloword.html
 
 
+## 加入讨论组
+
+ <p align="left">
+  <img width="300" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/dingding.jpg">
+</p>
 
 
 
