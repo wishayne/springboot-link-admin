@@ -19,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.springboot.bcode.domain.auth.Permission;
 import com.springboot.bcode.domain.auth.UserInfo;
+import com.springboot.common.AppContext;
 import com.springboot.common.GlobalUser;
 import com.springboot.common.utils.IPUtils;
 import com.springboot.core.logger.LoggerUtil;
@@ -90,15 +91,57 @@ public class RequestauthorizeAspect {
 			}
 		}
 
+		// 验证是否演示账号
+		if (userInfo.getName().equals("editor")) {
+			//不允许操作
+			if (url.contains("add") || url.contains("save")
+					|| url.contains("update") || url.contains("modify")
+					|| url.contains("delete") || url.contains("remove"))
+				return returnDemoSystem(request, response);
+		}
 		return pjp.proceed();
 	}
 
+	/**
+	 * 无权限操作
+	 *
+	 * @param @param request
+	 * @param @param response
+	 * @param @return
+	 * @param @throws IOException 设定文件
+	 * @return String 返回类型
+	 *
+	 */
 	private String returnAuthorizeRequests(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
-		out.println("{\"code\":5002, \"msg\":\"no permission, please contact the administrator!\"}");
+		out.println("{\"code\":"
+				+ AppContext.CODE_50002
+				+ ", \"msg\":\"no permission, please contact the administrator!\"}");
+		out.flush();
+		out.close();
+		return null;
+	}
+
+	/**
+	 * 演示系统无权限
+	 *
+	 * @param @param request
+	 * @param @param response
+	 * @param @return
+	 * @param @throws IOException 设定文件
+	 * @return String 返回类型
+	 *
+	 */
+	private String returnDemoSystem(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		out.println("{\"code\":" + AppContext.CODE_50003
+				+ ", \"msg\":\"Demo system does not allow operation!\"}");
 		out.flush();
 		out.close();
 		return null;

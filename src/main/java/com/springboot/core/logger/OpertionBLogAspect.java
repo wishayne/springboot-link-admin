@@ -42,7 +42,7 @@ public class OpertionBLogAspect {
 	public Object method(ProceedingJoinPoint pjp) throws Throwable {
 
 		BLog log = new BLog();
-		log.setTimestamp(System.currentTimeMillis());
+		log.setTimestamps(System.currentTimeMillis());
 		log.setCratetime(new Date());
 
 		// 先通过注解判断
@@ -58,7 +58,7 @@ public class OpertionBLogAspect {
 		try {
 			crateBLog(log, pjp);
 			log.setTitle(opertionBLog.title());
-			log.setDuration(System.currentTimeMillis() - log.getTimestamp());
+			log.setDuration(System.currentTimeMillis() - log.getTimestamps());
 			log.setResult(result);
 			// 将有OpertionBLog标记的日志记录到数据库
 			pool.execute(new WBLog(log));

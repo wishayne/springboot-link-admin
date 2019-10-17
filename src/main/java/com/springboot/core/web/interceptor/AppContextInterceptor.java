@@ -13,8 +13,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.bcode.domain.auth.UserInfo;
+import com.springboot.common.AppContext;
 import com.springboot.common.GlobalUser;
 import com.springboot.common.utils.StringUtils;
+import com.springboot.core.web.mvc.BaseRest;
 
 /**
  * 拦截器，优先执行，验证用户是否登录
@@ -68,7 +70,7 @@ public class AppContextInterceptor implements HandlerInterceptor {
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
-		out.println("{\"code\":50001, \"msg\":\"No authority, Please log in!\"}");
+		out.println("{\"code\":"+AppContext.CODE_50001+", \"msg\":\"No authority, Please log in!\"}");
 		out.flush();
 		out.close();
 	}

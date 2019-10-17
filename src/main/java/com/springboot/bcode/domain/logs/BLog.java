@@ -31,7 +31,7 @@ public class BLog {
 	@Columns(column = "duration")
 	private Long duration;// 持续时间
 
-	private Long timestamp;// Span创建时的时间戳，使用的单位是微秒（而不是毫秒），所有时间戳都有错误，包括主机之间的时钟偏差以及时间服务重新设置时钟的可能性，
+	private Long timestamps;// Span创建时的时间戳，使用的单位是微秒（而不是毫秒），所有时间戳都有错误，包括主机之间的时钟偏差以及时间服务重新设置时钟的可能性，
 	// 结果
 	private Object result;
 
@@ -115,12 +115,13 @@ public class BLog {
 		this.duration = duration;
 	}
 
-	public Long getTimestamp() {
-		return timestamp;
+
+	public Long getTimestamps() {
+		return timestamps;
 	}
 
-	public void setTimestamp(Long timestamp) {
-		this.timestamp = timestamp;
+	public void setTimestamps(Long timestamps) {
+		this.timestamps = timestamps;
 	}
 
 	public Object getResult() {
