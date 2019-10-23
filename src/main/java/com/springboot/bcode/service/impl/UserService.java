@@ -25,7 +25,6 @@ import com.springboot.bcode.service.IUserService;
 import com.springboot.common.AppToken;
 import com.springboot.common.GlobalUser;
 import com.springboot.common.exception.AuthException;
-import com.springboot.common.exception.SystemException;
 import com.springboot.common.utils.BeanUtils;
 import com.springboot.common.utils.MD5Utils;
 import com.springboot.common.utils.StringUtils;
@@ -202,6 +201,9 @@ public class UserService implements IUserService {
 		if (vo.getRoleIds() == null || vo.getRoleIds().length == 0) {
 			throw new AuthException("请分配角色");
 		}
+		if(vo.getDeptid()==null){
+			throw new AuthException("请分配部门");
+		}
 
 		UserInfo user = new UserInfo();
 		BeanUtils.copyObject(user, vo);
@@ -237,7 +239,9 @@ public class UserService implements IUserService {
 		if (vo.getRoleIds() == null || vo.getRoleIds().length == 0) {
 			throw new AuthException("请分配角色");
 		}
-
+		if(vo.getDeptid()==null){
+			throw new AuthException("请分配部门");
+		}
 		UserInfo user = userDao.select(vo.getUid());
 		if (user == null) {
 			throw new AuthException("用户不存在");
@@ -308,4 +312,18 @@ public class UserService implements IUserService {
 		return userDao.find(user);
 	}
 
+	/**
+	 * 更新用户状态
+	 */
+	@Override
+	public boolean updateState(UserInfoVO vo) {
+		if (StringUtils.isBlank(vo.getUid())) {
+			throw new AuthException("uid不能为空");
+		}
+		int result = userDao.updateState(vo.getUid(), vo.getState());
+		if (result < 0) {
+			throw new AuthException("更新失败");
+		}
+		return true;
+	}
 }

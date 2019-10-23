@@ -6,9 +6,11 @@ import com.springboot.common.utils.MD5Utils;
 import com.springboot.common.utils.UUIDUtils;
 
 /**
- * global only identifier
  * 
- * @author Administrator
+ * @ClassName: AppToken
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月21日 下午4:52:24
  *
  */
 public class AppToken {

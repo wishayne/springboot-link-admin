@@ -16,13 +16,13 @@ import com.springboot.bcode.domain.auth.UserInfo;
 import com.springboot.common.AppContext;
 import com.springboot.common.GlobalUser;
 import com.springboot.common.utils.StringUtils;
-import com.springboot.core.web.mvc.BaseRest;
-
 /**
  * 拦截器，优先执行，验证用户是否登录
- * 
- * @author Administrator
- *
+* @ClassName: AppContextInterceptor 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:53:20 
+*
  */
 @Component
 public class AppContextInterceptor implements HandlerInterceptor {
@@ -64,13 +64,13 @@ public class AppContextInterceptor implements HandlerInterceptor {
 		return true;
 	}
 
-
 	private void returnNoLogin(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
-		out.println("{\"code\":"+AppContext.CODE_50001+", \"msg\":\"No authority, Please log in!\"}");
+		out.println("{\"code\":" + AppContext.CODE_50001
+				+ ", \"msg\":\"No authority, Please log in!\"}");
 		out.flush();
 		out.close();
 	}

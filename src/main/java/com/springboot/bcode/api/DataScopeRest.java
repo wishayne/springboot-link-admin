@@ -13,7 +13,14 @@ import com.springboot.common.exception.AuthException;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
 
-
+/**
+ * 数据权限接口
+* @ClassName: DataScopeRest 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:56:27 
+*
+ */
 @Controller
 @RequestMapping(value = "/dataScope")
 public class DataScopeRest extends BaseRest {

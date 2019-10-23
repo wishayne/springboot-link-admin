@@ -16,7 +16,14 @@ import com.springboot.core.logger.OpertionBLog;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
-
+/**
+ * 权限接口
+* @ClassName: PermissionRest 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:56:06 
+*
+ */
 @RestController
 @RequestMapping(value = "rest/permission")
 public class PermissionRest extends BaseRest {

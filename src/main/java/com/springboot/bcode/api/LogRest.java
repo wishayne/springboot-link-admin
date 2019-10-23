@@ -12,7 +12,14 @@ import com.springboot.common.exception.AuthException;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
-
+/**
+ * 日志接口
+* @ClassName: LogRest 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:56:10 
+*
+ */
 @RestController
 @RequestMapping(value = "/rest/logs")
 public class LogRest extends BaseRest {

@@ -16,7 +16,14 @@ import com.springboot.core.logger.OpertionBLog;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
-
+/**
+ * 角色接口
+* @ClassName: RoleRest 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:56:02 
+*
+ */
 @RestController
 @RequestMapping(value = "/rest/role")
 public class RoleRest extends BaseRest {
@@ -24,7 +31,6 @@ public class RoleRest extends BaseRest {
 	@Autowired
 	private IRoleService roleService;
 
-	@OpertionBLog(title = "角色列表")
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	public ResponseResult list(@RequestBody Role role) {
 		ResponseResult rep = new ResponseResult();

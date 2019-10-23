@@ -43,7 +43,7 @@ public class UserInfo extends JqGridParam {
 	// 用户拥有的功能权限
 	private List<Permission> permissions;
 	// 用户拥有的数据权限
-	private List<DataScope> ownedDateScopeList;
+	private List<DataScope> datascopes;
 
 	public String getPassword() {
 		return password;
@@ -101,12 +101,12 @@ public class UserInfo extends JqGridParam {
 		this.name = name;
 	}
 
-	public List<DataScope> getOwnedDateScopeList() {
-		return ownedDateScopeList;
+	public List<DataScope> getDatascopes() {
+		return datascopes;
 	}
 
-	public void setOwnedDateScopeList(List<DataScope> ownedDateScopeList) {
-		this.ownedDateScopeList = ownedDateScopeList;
+	public void setDatascopes(List<DataScope> datascopes) {
+		this.datascopes = datascopes;
 	}
 
 	public Integer getDeptid() {
@@ -196,5 +196,6 @@ public class UserInfo extends JqGridParam {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
+
 
 }

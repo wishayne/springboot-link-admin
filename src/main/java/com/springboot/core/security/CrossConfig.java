@@ -9,8 +9,8 @@ import org.springframework.web.filter.CorsFilter;
  * 跨域配置
 * @ClassName: CrossConfig 
 * @Description: TODO(这里用一句话描述这个类的作用) 
-* @author link
-* @date 2019年9月7日 上午9:32:35 
+* @author 252956
+* @date 2019年10月21日 下午4:53:28 
 *
  */
 @Configuration

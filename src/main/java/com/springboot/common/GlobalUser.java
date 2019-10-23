@@ -8,7 +8,14 @@ import com.springboot.common.utils.HttpUtils;
 import com.springboot.common.utils.StringUtils;
 import com.springboot.core.redis.RedisUtils;
 import com.springboot.core.web.session.CookieContext;
-
+/**
+ * 
+* @ClassName: GlobalUser 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:52:13 
+*
+ */
 public class GlobalUser {
 
 	public final static Integer user_enable = 1;// 正常

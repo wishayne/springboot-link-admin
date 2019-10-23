@@ -13,27 +13,30 @@ public class BLog {
 	private String loginuser;
 	@Columns(column = "vsername")
 	private String vsername;
-
 	@Columns(column = "title")
 	private String title;
 	@Columns(column = "url")
 	private String url;
-	@Columns(column = "requestmethod")
+	@Columns(column = "request_method")
 	private String requestmethod;
-	@Columns(column = "contenttype")
+	@Columns(column = "content_type")
 	private String contentType;
-	@Columns(column = "requestparams")
+	@Columns(column = "request_params")
 	private Object requestparams;
 	@Columns(column = "ip")
 	private String ip;
-	@Columns(column = "cratetime")
-	private Date cratetime;
+	@Columns(column = "createtime")
+	private Date createtime;
 	@Columns(column = "duration")
 	private Long duration;// 持续时间
 
 	private Long timestamps;// Span创建时的时间戳，使用的单位是微秒（而不是毫秒），所有时间戳都有错误，包括主机之间的时钟偏差以及时间服务重新设置时钟的可能性，
 	// 结果
+	@Columns(column = "response_result")
 	private Object result;
+
+	@Columns(column = "state")
+	private Integer state;
 
 	public String getId() {
 		return id;
@@ -115,7 +118,6 @@ public class BLog {
 		this.duration = duration;
 	}
 
-
 	public Long getTimestamps() {
 		return timestamps;
 	}
@@ -132,12 +134,22 @@ public class BLog {
 		this.result = result;
 	}
 
-	public Date getCratetime() {
-		return cratetime;
+
+	public Date getCreatetime() {
+		return createtime;
 	}
 
-	public void setCratetime(Date cratetime) {
-		this.cratetime = cratetime;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
 
 }

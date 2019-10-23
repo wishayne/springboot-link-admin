@@ -47,10 +47,16 @@ public class UserDao extends BaseDaoImpl implements IUserDao {
 			sql.append(" and u.mobile like '%").append(
 					user.getMobile().trim() + "%' ");
 		}
-		if (StringUtils.isNotBlank(user.getDeptName())) {
+		/*if (StringUtils.isNotBlank(user.getDeptName())) {
 			sql.append(" and d.name like '%").append(
 					user.getDeptName().trim() + "%' ");
 
+		}*/
+		if (user.getDeptid() != null) {
+			sql.append(" and u.deptid=" + user.getDeptid() + "");
+		}
+		if (user.getState() != null) {
+			sql.append(" and u.state=" + user.getState() + "");
 		}
 		if (type == 0) {
 			if (StringUtils.isNotBlank(user.getSidx())) {
@@ -98,14 +104,6 @@ public class UserDao extends BaseDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public int updateStateByOrgCode(String orgCode, Integer state) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("update t_web_user set state=? where org_code=?");
-		return super.addOrUpdateOrDelete(sql.toString(), new Object[] { state,
-				orgCode });
-	}
-
-	@Override
 	public UserInfo select(String id) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select u.uid,u.name,u.password,u.vsername,u.mobile,u.createTime,u.state,d.id as deptid,d.name as deptName from t_web_user u");
@@ -129,6 +127,14 @@ public class UserDao extends BaseDaoImpl implements IUserDao {
 	@Override
 	public int[] insert(List<UserRole> list) {
 		return super.batchInsert(list);
+	}
+
+	@Override
+	public int updateState(String uid, int state) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("update t_web_user set state=? where uid=?");
+		return super.addOrUpdateOrDelete(sql.toString(), new Object[] { state,
+				uid });
 	}
 
 }

@@ -5,6 +5,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+/**
+ * 
+ * @ClassName: SpringUtils
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月21日 下午4:52:51
+ *
+ */
 @Component
 public class SpringUtils implements ApplicationContextAware {
 	private static ApplicationContext applicationContext;

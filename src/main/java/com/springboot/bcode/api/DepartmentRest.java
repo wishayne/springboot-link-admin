@@ -15,7 +15,14 @@ import com.springboot.core.logger.OpertionBLog;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
-
+/**
+ * 部门接口
+* @ClassName: DepartmentRest 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:56:18 
+*
+ */
 @RestController
 @RequestMapping(value = "/rest/department")
 public class DepartmentRest extends BaseRest {

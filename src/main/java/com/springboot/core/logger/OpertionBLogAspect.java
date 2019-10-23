@@ -15,18 +15,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSONObject;
 import com.springboot.bcode.dao.ILogDao;
 import com.springboot.bcode.domain.auth.UserInfo;
 import com.springboot.bcode.domain.logs.BLog;
+import com.springboot.common.AppContext;
 import com.springboot.common.GlobalUser;
 import com.springboot.common.utils.HttpUtils;
 import com.springboot.common.utils.IPUtils;
+import com.springboot.core.web.mvc.ResponseResult;
 
 /**
  * 日志记录aop,目前已经优化为线程池加异步写入业务日志
- * 
- * @author Administrator
- *
+* @ClassName: OpertionBLogAspect 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:54:37 
+*
  */
 @Order(7)
 @Aspect
@@ -43,8 +48,8 @@ public class OpertionBLogAspect {
 
 		BLog log = new BLog();
 		log.setTimestamps(System.currentTimeMillis());
-		log.setCratetime(new Date());
-
+		log.setCreatetime(new Date());
+		log.setState(1);
 		// 先通过注解判断
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod(); // 获取被拦截的方法
@@ -59,7 +64,11 @@ public class OpertionBLogAspect {
 			crateBLog(log, pjp);
 			log.setTitle(opertionBLog.title());
 			log.setDuration(System.currentTimeMillis() - log.getTimestamps());
-			log.setResult(result);
+			log.setResult(JSONObject.toJSONString(result));
+			if (result == null
+					|| ((ResponseResult) result).getCode() != AppContext.CODE_20000) {
+				log.setState(0);
+			}
 			// 将有OpertionBLog标记的日志记录到数据库
 			pool.execute(new WBLog(log));
 		} catch (Exception e) {
@@ -73,18 +82,35 @@ public class OpertionBLogAspect {
 		HttpServletRequest request = HttpUtils.getRequest();
 		log.setUrl(request.getRequestURL().toString());
 		log.setIp(IPUtils.getIpAddr(request));
-
-		//String requestmethod = request.getMethod();
-		//String contentType = request.getContentType();
-		//log.setRequestmethod(requestmethod);
-		//log.setContentType(contentType);
-
+		log.setRequestmethod(request.getMethod());
+		log.setContentType(request.getContentType());
+		log.setRequestparams(getRequestParams(request, pjp.getArgs()));
 		UserInfo user = GlobalUser.getUserInfo();
 		if (user != null) {
 			log.setLoginuser(user.getName());
 			log.setVsername(user.getVserName());
 		}
 
+	}
+
+	private Object getRequestParams(HttpServletRequest request, Object[] args) {
+		StringBuilder sb = new StringBuilder();
+		if ("POST".equalsIgnoreCase(request.getMethod())) {
+			if (request.getContentType() != null) {
+				if (request.getContentType().indexOf("json") > -1) {
+					for (Object object : args) {
+						sb.append(JSONObject.toJSONString(object));
+					}
+				} else {
+					for (Object object : args) {
+						sb.append(object);
+					}
+				}
+			}
+		} else {
+			sb.append(request.getQueryString());
+		}
+		return sb.toString();
 	}
 
 	class WBLog implements Runnable {

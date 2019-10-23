@@ -19,6 +19,15 @@ import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
 
+/**
+ * 用户接口
+ * 
+ * @ClassName: UserRest
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author link
+ * @date 2019年10月21日 下午4:47:25
+ *
+ */
 @RestController
 @RequestMapping(value = "/rest/user")
 public class UserRest extends BaseRest {
@@ -49,7 +58,6 @@ public class UserRest extends BaseRest {
 	 * @return ResponseResult 返回类型
 	 *
 	 */
-	@OpertionBLog(title = "用户信息")
 	@RequestMapping(value = "info")
 	public ResponseResult info() {
 		ResponseResult rep = new ResponseResult();
@@ -78,7 +86,6 @@ public class UserRest extends BaseRest {
 		return rep;
 	}
 
-	@OpertionBLog(title = "用户列表")
 	@Requestauthorize
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	public ResponseResult list(@RequestBody UserInfo user) {
@@ -144,5 +151,23 @@ public class UserRest extends BaseRest {
 		return rep;
 
 	}
+	
+	@OpertionBLog(title = "更新用户状态")
+	@RequestMapping(value = "updateState", method = RequestMethod.POST)
+	public ResponseResult updateState(@RequestBody UserInfoVO vo) {
+		ResponseResult rep = new ResponseResult();
+		try {
+			userService.updateState(vo);
+		} catch (AuthException e) {
+			rep.setCode(CODE_500);
+			rep.setMsg(e.getMessage());
+		} catch (Exception e) {
+			rep.setCode(CODE_500);
+			rep.setMsg("系统异常.请稍后再试");
+		}
+		return rep;
+
+	}
+	
 
 }

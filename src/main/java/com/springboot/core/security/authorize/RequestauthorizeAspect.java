@@ -27,7 +27,10 @@ import com.springboot.core.logger.LoggerUtil;
 /**
  * 权限验证aop
  * 
- * @author Administrator
+ * @ClassName: RequestauthorizeAspect
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月21日 下午4:54:07
  *
  */
 @Order(2)
@@ -93,7 +96,7 @@ public class RequestauthorizeAspect {
 
 		// 验证是否演示账号
 		if (userInfo.getName().equals("editor")) {
-			//不允许操作
+			// 不允许操作
 			if (url.contains("add") || url.contains("save")
 					|| url.contains("update") || url.contains("modify")
 					|| url.contains("delete") || url.contains("remove"))

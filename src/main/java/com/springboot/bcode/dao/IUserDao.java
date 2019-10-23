@@ -22,7 +22,7 @@ public interface IUserDao {
 
 	int update(UserInfo user);
 
-	int updateStateByOrgCode(String orgCode, Integer state);
+	int updateState(String uid,int state);
 
 	int delete(UserInfo user);
 

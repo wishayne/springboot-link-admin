@@ -1,10 +1,12 @@
 package com.springboot.core.web.mvc;
 
 /**
- * response result
  * 
- * @author Administrator
- *
+* @ClassName: ResponseResult 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:53:02 
+*
  */
 public class ResponseResult {
 

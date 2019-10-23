@@ -20,10 +20,12 @@ public interface IUserService {
 
 	void modifyPwd(ModifyPwdVO vo);
 
-	boolean add(UserInfoVO user);
+	boolean add(UserInfoVO vo);
 
-	boolean update(UserInfoVO user);
+	boolean update(UserInfoVO vo);
 
 	boolean delete(String uid);
+	
+	boolean updateState(UserInfoVO vo);
 
 }

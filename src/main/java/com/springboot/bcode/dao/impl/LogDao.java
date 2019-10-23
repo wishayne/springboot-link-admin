@@ -30,22 +30,22 @@ public class LogDao extends BaseDaoImpl implements ILogDao {
 	private String logPageSql(BLogVO log, int type) {
 		StringBuilder sql = new StringBuilder();
 		if (type == 0) {
-			sql.append("select  * from t_web_logs");
+			sql.append("select  id,loginuser,vsername,title,url,request_method as requestmethod,content_type as contentType,request_params as requestparams,ip,createtime,duration,response_result as result,state from t_web_logs");
 		} else {
 			sql.append("select count(*) from t_web_logs ");
 		}
 		sql.append(" where 1=1");
 
-		sql.append(" and cratetime >='" + log.getStarttime() + "'");
+		sql.append(" and createtime >='" + log.getStarttime() + "'");
 
-		sql.append(" and cratetime <='" + log.getEndtime() + "'");
+		sql.append(" and createtime <='" + log.getEndtime() + "'");
 
 		if (StringUtils.isNotBlank(log.getLoginuser())) {
 			sql.append(" and loginuser like '%").append(
 					log.getLoginuser().trim() + "%' ");
 		}
 		if (type == 0) {
-			sql.append(" order by cratetime desc");
+			sql.append(" order by createtime desc");
 		}
 		return sql.toString();
 	}

@@ -1,5 +1,12 @@
 package com.springboot.core.jdbc;
-
+/**
+ * 
+* @ClassName: JdbcException 
+* @Description: TODO(这里用一句话描述这个类的作用) 
+* @author 252956
+* @date 2019年10月21日 下午4:54:50 
+*
+ */
 public class JdbcException extends RuntimeException {
 
 	/**

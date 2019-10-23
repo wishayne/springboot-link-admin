@@ -7,6 +7,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.springboot.core.jdbc.page.ISQLPageHandle;
 import com.springboot.core.jdbc.support.AbstractJdbcSupport;
 
+/**
+ * 
+ * @ClassName: BaseDaoImpl
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月21日 下午4:55:09
+ *
+ */
 public class BaseDaoImpl extends AbstractJdbcSupport {
 	@Autowired
 	@Qualifier("baseJdbcTemplate")
