@@ -4,6 +4,15 @@ import com.springboot.core.jdbc.annotation.Columns;
 import com.springboot.core.jdbc.annotation.Tables;
 import com.springboot.core.web.mvc.JqGridParam;
 
+/**
+ * 角色表
+ * 
+ * @ClassName: Role
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月23日 下午2:25:23
+ *
+ */
 @Tables(table = "t_web_role")
 public class Role extends JqGridParam {
 
@@ -11,9 +20,17 @@ public class Role extends JqGridParam {
 	private Integer id;
 	@Columns(column = "name")
 	private String name;
+	@Columns(column = "levels")
+	private Integer levels;// 新增用户时只能赋予比自己级别低的角色
 
 	@Columns(column = "description")
 	private String description;
+
+	@Columns(column = "data_scope")
+	private String data_scope;// 数据范围（1：自定数据权限 2：全部数据权限 3：本部门数据权限 4：本部门及以下数据权限
+								// 5：本人）
+	// 自定义数据权限
+	private Integer deptIds[];
 	// 权限id
 	private String permIds;
 
@@ -49,5 +66,28 @@ public class Role extends JqGridParam {
 		this.permIds = permIds;
 	}
 
+	public Integer getLevels() {
+		return levels;
+	}
+
+	public void setLevels(Integer levels) {
+		this.levels = levels;
+	}
+
+	public String getData_scope() {
+		return data_scope;
+	}
+
+	public void setData_scope(String data_scope) {
+		this.data_scope = data_scope;
+	}
+
+	public Integer[] getDeptIds() {
+		return deptIds;
+	}
+
+	public void setDeptIds(Integer[] deptIds) {
+		this.deptIds = deptIds;
+	}
 
 }

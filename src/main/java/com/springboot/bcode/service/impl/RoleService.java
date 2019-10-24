@@ -11,9 +11,8 @@ import com.springboot.bcode.dao.IDataScopeDao;
 import com.springboot.bcode.dao.IPermissionDao;
 import com.springboot.bcode.dao.IRoleDao;
 import com.springboot.bcode.dao.IUserDao;
-import com.springboot.bcode.domain.auth.DataScope;
 import com.springboot.bcode.domain.auth.Role;
-import com.springboot.bcode.domain.auth.RoleDataScopeVO;
+import com.springboot.bcode.domain.auth.RoleDept;
 import com.springboot.bcode.domain.auth.RolePermission;
 import com.springboot.bcode.service.IRoleService;
 import com.springboot.common.exception.AuthException;
@@ -163,33 +162,49 @@ public class RoleService implements IRoleService {
 
 	@Transactional(value = "baseTransactionManager")
 	@Override
-	public boolean saveRelationDataScope(RoleDataScopeVO vo) {
-		if (vo == null) {
+	public boolean saveRelationDataScope(Role role) {
+		if (role == null) {
 			throw new AuthException("条件不能为空");
 		}
-		if (vo.getRoleId() == null) {
+		if (role.getId() == null || role.getData_scope() == null) {
 			throw new AuthException("条件不能为空");
 		}
-		// 删除角色、模块对应的数据权限
-		DataScope ds = new DataScope();
-		ds.setRoleId(vo.getRoleId());
-		ds.setTargetUrl(vo.getTargetUrl());
-		ds.setTargetId(vo.getTargetId());
-		dataScopeDao.delete(ds);
+		Role roleInfo = roleDao.select(role.getId());
+		if (roleInfo == null) {
+			throw new AuthException("角色不存在");
+		}
 
-		if (vo.getDataScopeIdList() != null
-				&& !vo.getDataScopeIdList().isEmpty()) {
-			// 循环插入角色对应的数据权限
-			for (String permissionId : vo.getDataScopeIdList()) {
-				ds.setTargetUrl(vo.getTargetUrl());
-				ds.setPermissionId(permissionId);
-				ds.setTargetCategory(vo.getTargetCategory());
-				ds.setTargetId(vo.getTargetId());
-				ds.setTargetName(vo.getTargetName());
-				dataScopeDao.insert(ds);
+		// 自定义数据权限
+		if (role.getData_scope().equals("1")) {
+			if (role.getDeptIds() == null) {
+				throw new AuthException("自定义数据权限不能为空");
 			}
+			RoleDept delRoleDept = new RoleDept();
+			delRoleDept.setRoleId(role.getId());
+			roleDao.deleteRoleDetp(delRoleDept);
+
+			List<RoleDept> rdList = new ArrayList<RoleDept>();
+			RoleDept rd = null;
+			for (int i = 0; i < role.getDeptIds().length; i++) {
+				rd = new RoleDept();
+				rd.setRoleId(role.getId());
+				rd.setDeptId(role.getDeptIds()[i]);
+				rdList.add(rd);
+			}
+			roleDao.insertRoleDetp(rdList);
+		} else {
+
 		}
+		roleInfo.setData_scope(role.getData_scope());
+		roleDao.update(roleInfo);
 		return true;
 	}
 
+	@Override
+	public List<Integer> queryDataScope(Integer roleId) {
+		if (roleId == null) {
+			throw new AuthException("条件不能为空");
+		}
+		return roleDao.selectRoleDetp(roleId);
+	}
 }

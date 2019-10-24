@@ -38,4 +38,9 @@ public class DepartmentDao extends BaseDaoImpl implements IDepartmentDao {
 		return super.update(dept);
 	}
 
+	@Override
+	public int delete(Department dept) {
+		return super.delete(dept);
+	}
+
 }

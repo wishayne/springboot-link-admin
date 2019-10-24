@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springboot.bcode.dao.IRoleDao;
 import com.springboot.bcode.domain.auth.Role;
+import com.springboot.bcode.domain.auth.RoleDept;
 import com.springboot.bcode.domain.auth.RolePermission;
 import com.springboot.common.utils.StringUtils;
 import com.springboot.core.jdbc.BaseDaoImpl;
@@ -102,6 +103,24 @@ public class RoleDao extends BaseDaoImpl implements IRoleDao {
 	@Override
 	public Role select(Integer id) {
 		return super.selectById(id, Role.class);
+	}
+
+	@Override
+	public int[] insertRoleDetp(List<RoleDept> list) {
+		return super.batchInsert(list);
+	}
+
+	@Override
+	public int deleteRoleDetp(RoleDept roleDept) {
+		return super.delete(roleDept);
+	}
+
+	@Override
+	public List<Integer> selectRoleDetp(Integer roleId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT dept_id from  t_web_role_dept  ");
+		sql.append(" where  role_id=2 ");
+		return super.getJdbcTemplate().queryForList(sql.toString(), Integer.class);
 	}
 
 }

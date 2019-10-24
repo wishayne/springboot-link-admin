@@ -61,8 +61,9 @@ public class DepartmentService implements IDepartmentService {
 		if (deptInfo == null) {
 			throw new AuthException("未查询到部门信息");
 		}
-		deptInfo.setDeleted(1);
-		int result = departmentDao.update(deptInfo);
+		Department dept = new Department();
+		dept.setId(deptInfo.getId());
+		int result = departmentDao.delete(dept);
 		if (result < 0) {
 			throw new AuthException("操作失败");
 		}

@@ -68,6 +68,15 @@ public class RequestauthorizeAspect {
 		String ip = IPUtils.getIpAddr(request);
 		String url = request.getRequestURI();
 
+		// 验证是否演示账号
+		if (userInfo.getName().equals("editor")) {
+			// 不允许操作
+			if (url.indexOf("add") > -1 || url.indexOf("save") > -1
+					|| url.indexOf("update") > -1 || url.indexOf("modify") > -1
+					|| url.indexOf("delete") > -1 || url.indexOf("remove") > -1)
+				return returnDemoSystem(request, response);
+		}
+
 		List<Permission> permissions = userInfo.getPermissions();
 		if (permissions == null || permissions.isEmpty()) {
 			try {
@@ -94,14 +103,6 @@ public class RequestauthorizeAspect {
 			}
 		}
 
-		// 验证是否演示账号
-		if (userInfo.getName().equals("editor")) {
-			// 不允许操作
-			if (url.contains("add") || url.contains("save")
-					|| url.contains("update") || url.contains("modify")
-					|| url.contains("delete") || url.contains("remove"))
-				return returnDemoSystem(request, response);
-		}
 		return pjp.proceed();
 	}
 

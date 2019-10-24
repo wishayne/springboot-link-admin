@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.bcode.domain.auth.Role;
-import com.springboot.bcode.domain.auth.RoleDataScopeVO;
 import com.springboot.bcode.service.IRoleService;
 import com.springboot.common.exception.AuthException;
 import com.springboot.core.logger.LoggerUtil;
@@ -16,13 +15,15 @@ import com.springboot.core.logger.OpertionBLog;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
+
 /**
  * 角色接口
-* @ClassName: RoleRest 
-* @Description: TODO(这里用一句话描述这个类的作用) 
-* @author 252956
-* @date 2019年10月21日 下午4:56:02 
-*
+ * 
+ * @ClassName: RoleRest
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author 252956
+ * @date 2019年10月21日 下午4:56:02
+ *
  */
 @RestController
 @RequestMapping(value = "/rest/role")
@@ -136,12 +137,28 @@ public class RoleRest extends BaseRest {
 	 * @return
 	 */
 	@OpertionBLog(title = "角色分配数据权限")
-	@RequestMapping(value = "saveRelationDataScope", method = RequestMethod.POST)
+	@RequestMapping(value = "saveDataScope", method = RequestMethod.POST)
 	@Requestauthorize
-	public ResponseResult saveRelationDataScope(@RequestBody RoleDataScopeVO vo) {
+	public ResponseResult saveDataScope(@RequestBody Role role) {
 		ResponseResult rep = new ResponseResult();
 		try {
-			roleService.saveRelationDataScope(vo);
+			roleService.saveRelationDataScope(role);
+		} catch (AuthException e) {
+			rep.setCode(CODE_500);
+			rep.setMsg(e.getMessage());
+		} catch (Exception e) {
+			rep.setCode(CODE_500);
+			rep.setMsg("系统异常.请稍后再试");
+		}
+
+		return rep;
+	}
+
+	@RequestMapping(value = "queryDataScope")
+	public ResponseResult queryDataScope(@RequestParam("id") Integer roleId) {
+		ResponseResult rep = new ResponseResult();
+		try {
+			rep.setResult(roleService.queryDataScope(roleId));
 		} catch (AuthException e) {
 			rep.setCode(CODE_500);
 			rep.setMsg(e.getMessage());

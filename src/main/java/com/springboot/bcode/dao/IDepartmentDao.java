@@ -15,5 +15,7 @@ public interface IDepartmentDao {
 	int insert(Department dept);
 
 	int update(Department dept);
+	
+	int delete(Department dept);
 
 }
