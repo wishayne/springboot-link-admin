@@ -14,13 +14,13 @@ public class PermissionDao extends BaseDaoImpl implements IPermissionDao {
 
 	@Override
 	public List<Permission> selectAll() {
-		String sql = "SELECT id,name, parent_id as parentId,types,css,url,levels ,description,sorts,dataScope from t_web_right order by sorts asc";
+		String sql = "SELECT id,name, parent_id as parentId,types,i_frame,url,levels ,description,sorts,component_name,component_path,icon,cache,hidden from t_web_permission order by sorts asc";
 		return super.select(sql, Permission.class);
 	}
 
 	@Override
 	public List<Permission> selectByRole(Integer[] roleIds) {
-		String sql = "SELECT r.id,r.name, r.parent_id as parentId,r.types,r.css,r.url,r.levels ,r.description,r.sorts,r.dataScope  from t_web_role_right rr inner join t_web_right r on rr.right_id=r.id where rr.role_id in ("
+		String sql = "SELECT r.id,r.name, r.parent_id as parentId,r.types,r.i_frame,r.url,r.levels ,r.description,r.sorts,component_name,component_path,icon,cache,hidden  from t_web_role_permission rr inner join t_web_permission r on rr.right_id=r.id where rr.role_id in ("
 				+ StringUtils.join(roleIds, ",") + ") order by r.sorts asc";
 		return super.select(sql, Permission.class);
 	}

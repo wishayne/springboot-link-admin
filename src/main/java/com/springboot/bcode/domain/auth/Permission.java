@@ -1,3 +1,4 @@
+
 package com.springboot.bcode.domain.auth;
 
 import java.util.List;
@@ -5,7 +6,7 @@ import java.util.List;
 import com.springboot.core.jdbc.annotation.Columns;
 import com.springboot.core.jdbc.annotation.Tables;
 
-@Tables(table = "t_web_right")
+@Tables(table = "t_web_permission")
 public class Permission implements Comparable<Permission> {
 
 	@Columns(column = "id", primaryKey = true)
@@ -20,8 +21,6 @@ public class Permission implements Comparable<Permission> {
 	private Integer state;
 	@Columns(column = "description")
 	private String description;
-	@Columns(column = "css")
-	private String css;
 	@Columns(column = "url")
 	private String url;
 	@Columns(column = "levels")
@@ -29,6 +28,26 @@ public class Permission implements Comparable<Permission> {
 	// 菜单顺序
 	@Columns(column = "sorts")
 	private Integer sorts;
+	
+	
+	@Columns(column = "i_frame")
+	private Integer i_frame;//是否外链 2不是，1是
+	
+	@Columns(column = "component_name")
+	private String component_name;//组件名称
+	
+	@Columns(column = "component_path")
+	private String component_path;//组件路径
+	
+	@Columns(column = "icon")
+	private String icon;//图标
+	
+	@Columns(column = "cache")
+	private Integer cache;//是否缓存 2:不是 1是
+	
+	@Columns(column = "hidden")
+	private Integer hidden;//是否隐藏 2:不是 1是
+	
 	// 子权限集合
 	private List<Permission> childrens;
 
@@ -53,13 +72,6 @@ public class Permission implements Comparable<Permission> {
 		return false;
 	}
 
-	public String getCss() {
-		return css;
-	}
-
-	public void setCss(String css) {
-		this.css = css;
-	}
 
 	public String getUrl() {
 		return url;
@@ -197,4 +209,54 @@ public class Permission implements Comparable<Permission> {
 		}
 		return -1;
 	}
+
+	public Integer getI_frame() {
+		return i_frame;
+	}
+
+	public void setI_frame(Integer i_frame) {
+		this.i_frame = i_frame;
+	}
+
+	public String getComponent_name() {
+		return component_name;
+	}
+
+	public void setComponent_name(String component_name) {
+		this.component_name = component_name;
+	}
+
+	public String getComponent_path() {
+		return component_path;
+	}
+
+	public void setComponent_path(String component_path) {
+		this.component_path = component_path;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public Integer getCache() {
+		return cache;
+	}
+
+	public void setCache(Integer cache) {
+		this.cache = cache;
+	}
+
+	public Integer getHidden() {
+		return hidden;
+	}
+
+	public void setHidden(Integer hidden) {
+		this.hidden = hidden;
+	}
+	
+	
 }
