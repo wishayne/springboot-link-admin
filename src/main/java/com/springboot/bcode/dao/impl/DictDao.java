@@ -51,7 +51,7 @@ public class DictDao extends BaseDaoImpl implements IDictDao {
 							+ " desc");
 				}
 			} else {
-				sql.append(" order by sorts asc");
+				sql.append(" order by id desc");
 			}
 		}
 		return sql.toString();

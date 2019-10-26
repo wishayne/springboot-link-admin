@@ -15,7 +15,7 @@ public class Permission implements Comparable<Permission> {
 	@Columns(column = "name")
 	private String name;
 	@Columns(column = "types")
-	private Integer types; // '0:菜单，1:页面权限',
+	private Integer types; // '0:菜单，1:按钮',
 	@Columns(column = "state")
 	private Integer state;
 	@Columns(column = "description")
@@ -29,8 +29,6 @@ public class Permission implements Comparable<Permission> {
 	// 菜单顺序
 	@Columns(column = "sorts")
 	private Integer sorts;
-	@Columns(column = "dataScope")
-	private Integer dataScope; // 数据权限，1设置，0不设置
 	// 子权限集合
 	private List<Permission> childrens;
 
@@ -103,9 +101,6 @@ public class Permission implements Comparable<Permission> {
 		this.childrens = childrens;
 	}
 
-
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -145,8 +140,6 @@ public class Permission implements Comparable<Permission> {
 	public void setSorts(Integer sorts) {
 		this.sorts = sorts;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -195,14 +188,6 @@ public class Permission implements Comparable<Permission> {
 		} else if (!url.equals(other.url))
 			return false;
 		return true;
-	}
-
-	public Integer getDataScope() {
-		return dataScope;
-	}
-
-	public void setDataScope(Integer dataScope) {
-		this.dataScope = dataScope;
 	}
 
 	@Override

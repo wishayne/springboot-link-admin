@@ -9,7 +9,7 @@ public interface IPermissionDao {
 
 	List<Permission> selectAll();
 
-	List<Permission> selectByRole(String  roleIds);
+	List<Permission> selectByRole(Integer[] roleIds);
 
 	List<Permission> find(Permission right);
 

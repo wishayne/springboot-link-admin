@@ -6,6 +6,7 @@ public class BLogVO extends JqGridParam {
 	private String starttime;
 	private String endtime;
 	private String loginuser;
+	private Integer state;
 
 	public String getStarttime() {
 		return starttime;
@@ -29,6 +30,14 @@ public class BLogVO extends JqGridParam {
 
 	public void setLoginuser(String loginuser) {
 		this.loginuser = loginuser;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 }

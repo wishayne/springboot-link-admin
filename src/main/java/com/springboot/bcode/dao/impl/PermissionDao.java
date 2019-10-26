@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springboot.bcode.dao.IPermissionDao;
 import com.springboot.bcode.domain.auth.Permission;
+import com.springboot.common.utils.StringUtils;
 import com.springboot.core.jdbc.BaseDaoImpl;
 
 @Repository
@@ -18,9 +19,9 @@ public class PermissionDao extends BaseDaoImpl implements IPermissionDao {
 	}
 
 	@Override
-	public List<Permission> selectByRole(String roleIds) {
+	public List<Permission> selectByRole(Integer[] roleIds) {
 		String sql = "SELECT r.id,r.name, r.parent_id as parentId,r.types,r.css,r.url,r.levels ,r.description,r.sorts,r.dataScope  from t_web_role_right rr inner join t_web_right r on rr.right_id=r.id where rr.role_id in ("
-				+ roleIds + ") order by r.sorts asc";
+				+ StringUtils.join(roleIds, ",") + ") order by r.sorts asc";
 		return super.select(sql, Permission.class);
 	}
 

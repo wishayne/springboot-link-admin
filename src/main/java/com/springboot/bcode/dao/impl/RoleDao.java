@@ -58,7 +58,7 @@ public class RoleDao extends BaseDaoImpl implements IRoleDao {
 	@Override
 	public List<Role> selectByUserId(String userId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT r.id,r.name from t_web_user_role ur INNER JOIN t_web_role r on ur.role_id=r.id ");
+		sql.append("SELECT r.id,r.name,r.data_scope from t_web_user_role ur INNER JOIN t_web_role r on ur.role_id=r.id ");
 		sql.append(" where  ur.user_id=? ");
 
 		return super
@@ -119,8 +119,9 @@ public class RoleDao extends BaseDaoImpl implements IRoleDao {
 	public List<Integer> selectRoleDetp(Integer roleId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT dept_id from  t_web_role_dept  ");
-		sql.append(" where  role_id=2 ");
-		return super.getJdbcTemplate().queryForList(sql.toString(), Integer.class);
+		sql.append(" where  role_id=" + roleId + " ");
+		return super.getJdbcTemplate().queryForList(sql.toString(),
+				Integer.class);
 	}
 
 }

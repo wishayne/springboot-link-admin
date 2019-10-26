@@ -44,6 +44,10 @@ public class LogDao extends BaseDaoImpl implements ILogDao {
 			sql.append(" and loginuser like '%").append(
 					log.getLoginuser().trim() + "%' ");
 		}
+		if (log.getState() != null) {
+			sql.append(" and state=" + log.getState() + "");
+		}
+
 		if (type == 0) {
 			sql.append(" order by createtime desc");
 		}

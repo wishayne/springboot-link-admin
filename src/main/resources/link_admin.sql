@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-10-24 17:07:02
+Date: 2019-10-26 09:18:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,22 +66,18 @@ CREATE TABLE `t_web_dept` (
   `deleted` int(11) DEFAULT NULL,
   `sorts` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_dept
 -- ----------------------------
-INSERT INTO `t_web_dept` VALUES ('1', 'Link公司', '0', '0', '0', '1', '0');
 INSERT INTO `t_web_dept` VALUES ('2', '上海集团', '0', '0', null, '0', '1');
-INSERT INTO `t_web_dept` VALUES ('3', '徐汇分公司1', '0', '1', null, '1', '11');
 INSERT INTO `t_web_dept` VALUES ('4', '青浦分公司', '2', '1', null, '0', '12');
-INSERT INTO `t_web_dept` VALUES ('5', '徐汇分公司', '2', '1', null, '1', '13');
 INSERT INTO `t_web_dept` VALUES ('6', '人事部', '4', '2', null, '0', '11');
-INSERT INTO `t_web_dept` VALUES ('7', '财务部', '4', '2', null, '1', '12');
 INSERT INTO `t_web_dept` VALUES ('8', '信息中心', '4', '2', null, '0', '13');
-INSERT INTO `t_web_dept` VALUES ('9', '运维部', '4', '2', null, '1', '14');
-INSERT INTO `t_web_dept` VALUES ('10', '安全部', '4', '2', null, '1', '15');
-INSERT INTO `t_web_dept` VALUES ('11', 'IT与流程', '5', '2', null, '1', '21');
+INSERT INTO `t_web_dept` VALUES ('9', '运维部', '4', '2', null, '0', '14');
+INSERT INTO `t_web_dept` VALUES ('10', '安全部', '4', '2', null, '0', '15');
+INSERT INTO `t_web_dept` VALUES ('11', 'IT与流程', '5', '2', null, '0', '21');
 INSERT INTO `t_web_dept` VALUES ('12', '快递系统研发部', '11', '2', null, '0', '12');
 INSERT INTO `t_web_dept` VALUES ('13', '渠道系统研发部', '11', '2', null, '0', '13');
 INSERT INTO `t_web_dept` VALUES ('14', '整车业务研发部', '11', '2', null, '0', '13');
@@ -89,12 +85,9 @@ INSERT INTO `t_web_dept` VALUES ('15', '物流系统研发部', '11', '2', null,
 INSERT INTO `t_web_dept` VALUES ('16', '徐汇分公司', '2', '1', null, '0', '2');
 INSERT INTO `t_web_dept` VALUES ('17', '研发部', '16', null, null, '0', '21');
 INSERT INTO `t_web_dept` VALUES ('18', '快递系统研发部', '4', null, null, '0', '1');
-INSERT INTO `t_web_dept` VALUES ('19', '快递系统研发部', '18', null, null, '1', null);
 INSERT INTO `t_web_dept` VALUES ('20', '流程中心', '4', null, null, '0', null);
-INSERT INTO `t_web_dept` VALUES ('21', '渠道系统研发部', '22', null, null, '0', '2');
+INSERT INTO `t_web_dept` VALUES ('21', '渠道系统研发部', '22', null, null, '0', '1');
 INSERT INTO `t_web_dept` VALUES ('22', '西安分公司', '2', null, null, '0', null);
-INSERT INTO `t_web_dept` VALUES ('23', '4545', '0', null, null, '1', null);
-INSERT INTO `t_web_dept` VALUES ('24', '7878', '0', null, null, '1', null);
 INSERT INTO `t_web_dept` VALUES ('25', '程序员鼓励师', '16', null, null, '0', null);
 
 -- ----------------------------
@@ -109,16 +102,18 @@ CREATE TABLE `t_web_dict` (
   `sorts` int(11) unsigned DEFAULT '1' COMMENT ' 顺序 ',
   `description` varchar(400) DEFAULT NULL COMMENT '数据描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of t_web_dict
 -- ----------------------------
-INSERT INTO `t_web_dict` VALUES ('2', 'data_scope', '1', '自定数据权限', '1', '12');
+INSERT INTO `t_web_dict` VALUES ('2', 'data_scope', '1', '自定义数据权限', '1', '12');
 INSERT INTO `t_web_dict` VALUES ('3', 'data_scope', '2', '全部数据权限', '2', '');
 INSERT INTO `t_web_dict` VALUES ('4', 'data_scope', '3', '本部门数据权限', '3', '');
 INSERT INTO `t_web_dict` VALUES ('5', 'data_scope', '4', '本部门及以下数据权限', '4', '');
 INSERT INTO `t_web_dict` VALUES ('6', 'data_scope', '5', '仅本人数据权限', '5', '');
+INSERT INTO `t_web_dict` VALUES ('9', 'sex', '1', '男', '1', '');
+INSERT INTO `t_web_dict` VALUES ('10', 'sex', '2', '女', '2', '');
 
 -- ----------------------------
 -- Table structure for `t_web_logs`
@@ -139,7 +134,7 @@ CREATE TABLE `t_web_logs` (
   `response_result` varchar(2000) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1374 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1480 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_logs
@@ -337,6 +332,112 @@ INSERT INTO `t_web_logs` VALUES ('1370', 'editor', '测试员1', '更新用户�
 INSERT INTO `t_web_logs` VALUES ('1371', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '116.228.112.130', '2019-10-24 16:59:05', '4', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":1,\"uid\":\"2\"}', '{\"code\":20000}', '1');
 INSERT INTO `t_web_logs` VALUES ('1372', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '116.228.112.130', '2019-10-24 16:59:12', '4', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":0,\"uid\":\"2\"}', '{\"code\":20000}', '1');
 INSERT INTO `t_web_logs` VALUES ('1373', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '116.228.112.130', '2019-10-24 16:59:17', '4', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":1,\"uid\":\"2\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1374', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '111.207.4.42', '2019-10-24 17:18:09', '121', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"k6aPS5EEss4Sehb2HyjaWA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1375', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '111.207.4.42', '2019-10-24 17:18:13', '4', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"Wb8Jgnn9vZe4mH3I5OYjiw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1376', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '111.207.4.42', '2019-10-24 17:18:15', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"15TDaqKvyq/8a73hoMTEaQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1377', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.24.98.254', '2019-10-24 17:48:57', '5', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"5UKatH+A0VmxCCNYv5VNng==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1378', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '36.112.26.128', '2019-10-24 18:07:27', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"XJFnGHSZYw1wBnkwv6zoaw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1379', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-24 19:54:23', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"g3wdgWpzGrHBthjoHHmmug==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1380', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '112.64.119.2', '2019-10-24 20:30:48', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"MVbMcMW7ckyC+m2X9rkLMA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1381', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '223.70.0.165', '2019-10-24 21:58:18', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"j9lQEhTCAefefE76Wo9Rog==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1382', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '116.228.112.130', '2019-10-25 08:32:01', '4', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":0,\"uid\":\"2\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1383', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '116.228.112.130', '2019-10-25 08:32:05', '3', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":1,\"uid\":\"2\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1384', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 10:29:21', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"cvqWdQWvDOMWNWNE+8S0OQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1385', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 10:30:45', '3', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"urUPxEUWuCdlh5MjHPpzmA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1386', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '111.200.40.14', '2019-10-25 10:40:19', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"cf7L/cCGu0Qpuj3qMXFFsQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1387', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-25 10:48:46', '15', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1388', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 10:48:52', '95', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"m/z2scic8FRbxlhtcyStrA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1389', 'admin', '管理员', '删除部门', 'http://localhost:8888/rest/department/delete', '0:0:0:0:0:0:0:1', '2019-10-25 10:48:57', '48', 'GET', null, 'id=23', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1390', 'admin', '管理员', '删除部门', 'http://localhost:8888/rest/department/delete', '0:0:0:0:0:0:0:1', '2019-10-25 10:48:59', '55', 'GET', null, 'id=24', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1391', 'admin', '管理员', '删除部门', 'http://localhost:8888/rest/department/delete', '0:0:0:0:0:0:0:1', '2019-10-25 10:49:15', '33', 'GET', null, 'id=19', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1392', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-25 10:56:45', '138', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptid\":18,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"1760126\",\"name\":\"云哥1\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"b88bb916dc054870ae124d92710ac3d3\",\"vserName\":\"云哥\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1393', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-25 10:57:05', '70', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptName\":\"快递系统研发部\",\"deptid\":20,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"1111111\",\"name\":\"辉桑\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"ad904a794a10434b8dec1de8ce23a288\",\"vserName\":\"辉桑\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1394', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-25 10:57:11', '60', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptName\":\"渠道系统研发部\",\"deptid\":8,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"\",\"name\":\"用嗓\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"c2bd6773d48643a9ac4540a551ba6ffb\",\"vserName\":\"用嗓\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1395', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 11:13:23', '5', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"FUd35ghewy4uYCromHKvMA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1396', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 11:13:27', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"XD7M6+rI6kLSxtFGGdXXxQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1397', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '220.202.224.33', '2019-10-25 11:30:25', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"qOQMae8yKbmXdc4tsDU9LA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1398', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '220.202.224.33', '2019-10-25 11:30:29', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"GAYUlecKOd8QOnnYnx0ztA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1399', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '220.202.224.33', '2019-10-25 11:30:30', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"tfzCqt+4c1+pLWoBro4eEA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1400', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-25 13:48:34', '149', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptName\":\"信息中心\",\"deptid\":8,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"22222\",\"name\":\"用嗓\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"c2bd6773d48643a9ac4540a551ba6ffb\",\"vserName\":\"用嗓\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1401', 'admin', '管理员', '修改角色', 'http://localhost:8888/rest/role/update', '0:0:0:0:0:0:0:1', '2019-10-25 13:51:33', '155', 'POST', 'application/json;charset=UTF-8', '{\"data_scope\":\"5\",\"description\":\"测试角色\",\"id\":11,\"limit\":0,\"name\":\"test\",\"page\":0,\"permIds\":\"1,5,6,14\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1402', 'admin', '管理员', '修改部门', 'http://localhost:8888/rest/department/update', '0:0:0:0:0:0:0:1', '2019-10-25 13:52:52', '34', 'POST', 'application/json;charset=UTF-8', '{\"id\":21,\"name\":\"渠道系统研发部\",\"parentId\":22,\"parentName\":\"西安分公司\",\"root\":false,\"sorts\":1}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1403', 'admin', '管理员', '修改角色', 'http://localhost:8888/rest/role/update', '0:0:0:0:0:0:0:1', '2019-10-25 13:53:35', '382', 'POST', 'application/json;charset=UTF-8', '{\"data_scope\":\"2\",\"description\":\"超级管理员\",\"id\":1,\"limit\":0,\"name\":\"admin\",\"page\":0,\"permIds\":\"1,36,37,8,9,16,17,18,19,10,43,20,21,22,23,11,24,25,26,27,13,28,29,30,31,41,44,45,46,32,33,34,35,40,42,5,6,7,2,14,4\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1404', 'admin', '管理员', '新增字典', 'http://localhost:8888/rest/dict/add', '0:0:0:0:0:0:0:1', '2019-10-25 13:53:58', '45', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"sex\",\"data_value\":\"男\",\"description\":\"\",\"limit\":0,\"page\":0}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1405', 'admin', '管理员', '新增字典', 'http://localhost:8888/rest/dict/add', '0:0:0:0:0:0:0:1', '2019-10-25 13:54:06', '17', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"2\",\"data_type\":\"sex\",\"data_value\":\"女\",\"description\":\"\",\"limit\":0,\"page\":0}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1406', 'admin', '管理员', '修改角色', 'http://localhost:8888/rest/role/update', '0:0:0:0:0:0:0:1', '2019-10-25 14:04:08', '312', 'POST', 'application/json;charset=UTF-8', '{\"data_scope\":\"1\",\"description\":\"系统演示角色\",\"id\":2,\"limit\":0,\"name\":\"editor\",\"page\":0,\"permIds\":\"1,36,37,8,9,16,17,18,19,10,43,20,21,22,23,11,24,25,26,27,13,28,29,30,31,41,32,33,40,42,5,6,7,2,14,4\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1407', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-25 14:13:38', '49', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"sex\",\"data_value\":\"男\",\"description\":\"\",\"id\":9,\"limit\":0,\"page\":0,\"sorts\":6}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1408', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-25 14:13:42', '30', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"2\",\"data_type\":\"sex\",\"data_value\":\"女\",\"description\":\"\",\"id\":10,\"limit\":0,\"page\":0,\"sorts\":7}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1409', 'admin', '管理员', '新增字典', 'http://localhost:8888/rest/dict/add', '0:0:0:0:0:0:0:1', '2019-10-25 14:14:01', '16', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"roel_level\",\"data_value\":\"超级管理员\",\"description\":\"\",\"limit\":0,\"page\":0,\"sorts\":8}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1410', 'admin', '管理员', '新增字典', 'http://localhost:8888/rest/dict/add', '0:0:0:0:0:0:0:1', '2019-10-25 14:16:00', '16', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"2\",\"data_type\":\"roel_level\",\"data_value\":\"系统管理员\",\"description\":\"系统管理员级别为2，使用该角色新增用户时只能赋予比系统管理员级别低的角色\",\"limit\":0,\"page\":0,\"sorts\":9}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1411', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-25 14:16:23', '32', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"roel_level\",\"data_value\":\"超级管理员\",\"description\":\"key越小级别越大\",\"id\":11,\"limit\":0,\"page\":0,\"sorts\":8}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1412', 'admin', '管理员', '删除字典', 'http://localhost:8888/rest/dict/delete', '0:0:0:0:0:0:0:1', '2019-10-25 14:19:38', '17', 'GET', null, 'id=12', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1413', 'admin', '管理员', '删除字典', 'http://localhost:8888/rest/dict/delete', '0:0:0:0:0:0:0:1', '2019-10-25 14:19:41', '17', 'GET', null, 'id=11', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1414', null, null, '退出', 'http://47.103.154.36:8888/rest/user/logout', '116.228.112.130', '2019-10-25 14:32:58', '2', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1415', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 14:33:04', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"3PlTFGXX/NHyNg9L7FCITQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1416', null, null, '退出', 'http://47.103.154.36:8888/rest/user/logout', '116.228.112.130', '2019-10-25 14:33:06', '1', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1417', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-25 14:34:46', '31', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1418', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:34:52', '47', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"+hH5v7Kwtm76XxY9dQv8fA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1419', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:36:10', '489', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"AeDEjg+EwhCO3XVyOPLvIQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1420', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:39:33', '409', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"QFQyG+3/0/b+rWmc3sDL+A==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1421', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '123.112.154.224', '2019-10-25 14:54:47', '4', 'POST', 'application/json;charset=utf-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"n+6fClgHON+AOrytQvM8sA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1422', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '123.112.154.224', '2019-10-25 14:54:52', '2', 'POST', 'application/json;charset=utf-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"NtCy/tj6fsvaaHlh8CZ3Tg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1423', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:57:28', '42', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"iANvpaXYiFOsqSaSzesTJw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1424', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:57:39', '17', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"DPsYbj2M2Kuy7cdvicrQRg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1425', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 14:58:38', '6374', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"VVDwoDntFjuZBmqFi5xatg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1426', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:52', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"SAcAWTs6N21HjBq6k70RNQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1427', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:55', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"JbkLtI2ZE6P6qQZvSB0xBg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1428', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:55', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"2Qb4FWfHYEKrMRsLR5xgbw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1429', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:55', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"plGFi2yzb8yG6lvTjSoxtQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1430', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:55', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"lqfPokZbJAZBtb4zumMNMA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1431', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:56', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"UHn5uLV9L6zLpY70J8DHyA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1432', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:56', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"4/8wYYGqz9BBE9U5z78BlA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1433', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '115.206.122.25', '2019-10-25 15:00:57', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"fKYE9/8ZWyCwMFNup8nMsg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1434', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:03:35', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"MFlj2u8zeH8jRK0yXN7sVQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1435', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:21', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"ek77lFEb4rju5x8oL4G7Ow==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1436', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:25', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"uv4O5NqpcvIGNbudlbuh7g==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1437', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:25', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"EO1JSPTh5d75sOZZ1zX+1Q==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1438', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:25', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"cpYSiSJb/FPnneURbNGFIA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1439', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:26', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"u8b53W6cBEgtPLGtsYpi7A==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1440', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:26', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"qU3vA4V6jyRMN8b9ErphyQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1441', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:26', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"TtGjr69z5oSR2Obv3782rw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1442', 'editor', '测试员1', '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 15:06:26', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"iK61NoO81+H+m9sNVLmmDg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1443', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 16:09:56', '39', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"8vHZ0jbIwFbFwvHjLYm0aA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1444', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-25 16:10:01', '0', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1445', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 16:10:09', '25', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"mQ31/4aU+JnGztjSZPGSeA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1446', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '124.90.43.86', '2019-10-25 16:09:04', '4', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"5qlZQev/cGQSx32neZrYqQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1447', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 16:10:50', '15', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"PzdPauBpUb/81M1ebtqYgw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1448', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 16:44:53', '1', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"admin\"}', '{\"code\":50000,\"msg\":\"无效的用户名或密码\"}', '0');
+INSERT INTO `t_web_logs` VALUES ('1449', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 16:44:59', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"Wvt8zZBPcl0kVHgvMXzZkg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1450', null, null, '退出', 'http://47.103.154.36:8888/rest/user/logout', '116.228.112.130', '2019-10-25 16:55:16', '0', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1451', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '116.228.112.130', '2019-10-25 16:55:21', '2', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"on0wlg/5WF4pHcT0ztu7XQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1452', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 17:07:38', '1207', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"JmLfpvm4R7E19x9PLMkNGQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1453', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-25 17:07:57', '2', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1454', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 17:08:07', '15', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"vYcEsTVMka3cn1jjjDQGrw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1455', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-25 17:08:31', '16', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"Pi5EOS/UOrH45Sdd1+kzjw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1456', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '183.95.184.75', '2019-10-25 18:19:04', '896', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":0,\"uid\":\"2\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1457', 'editor', '测试员1', '更新用户状态', 'http://47.103.154.36:8888/rest/user/updateState', '183.95.184.75', '2019-10-25 18:19:06', '5', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"introduction\":\"hello word\",\"limit\":0,\"page\":0,\"state\":1,\"uid\":\"2\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1458', null, null, '退出', 'http://47.103.154.36:8888/rest/user/logout', '183.95.184.75', '2019-10-25 20:35:17', '0', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1459', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '183.95.184.75', '2019-10-25 20:35:25', '6', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"QsAEhDvoKHk9P5TdBuxIXA==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1460', null, null, '登录', 'http://47.103.154.36:8888/rest/user/login', '123.123.222.236', '2019-10-25 22:50:13', '6', 'POST', 'application/json;charset=utf-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"ReQE9B3OV+o8PgrSvpgn4A==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1461', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-26 08:38:01', '0', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1462', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-26 08:38:02', '60482', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"0Z4e/+YNdDJiojFmIdypww==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1463', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-26 08:39:08', '19', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"KK58zwW0Tii89IcReMOfCw==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1464', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-26 08:41:47', '19', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"123456\",\"username\":\"editor\"}', '{\"code\":20000,\"result\":\"+WGDvnGt1c7HS8T0emvCXQ==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1465', null, null, '退出', 'http://localhost:8888/rest/user/logout', '0:0:0:0:0:0:0:1', '2019-10-26 08:42:01', '0', 'GET', null, 'null', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1466', null, null, '登录', 'http://localhost:8888/rest/user/login', '0:0:0:0:0:0:0:1', '2019-10-26 08:42:08', '20', 'POST', 'application/json;charset=UTF-8', '{\"password\":\"admin123456\",\"username\":\"admin\"}', '{\"code\":20000,\"result\":\"gkm94/EpfXRnRzJN+6thFg==\"}', '1');
+INSERT INTO `t_web_logs` VALUES ('1467', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:42:52', '109', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptName\":\"快递系统研发部\",\"deptid\":18,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"1760126\",\"name\":\"云哥\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"b88bb916dc054870ae124d92710ac3d3\",\"vserName\":\"云哥\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1468', 'admin', '管理员', '修改用户', 'http://localhost:8888/rest/user/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:43:01', '62', 'POST', 'application/json;charset=UTF-8', '{\"avatar\":\"pic\",\"deptName\":\"快递系统研发部\",\"deptid\":18,\"introduction\":\"hello word\",\"limit\":0,\"mobile\":\"1760126\",\"name\":\"云桑\",\"page\":0,\"password\":\"E10ADC3949BA59ABBE56E057F20F883E\",\"roleIds\":[2],\"state\":0,\"uid\":\"b88bb916dc054870ae124d92710ac3d3\",\"vserName\":\"云桑\"}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1469', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:43:34', '63', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"data_scope\",\"data_value\":\"自定义数据权限\",\"description\":\"12\",\"id\":2,\"limit\":0,\"page\":0,\"sorts\":1}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1470', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:44:59', '39', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"1\",\"data_type\":\"sex\",\"data_value\":\"男\",\"description\":\"\",\"id\":9,\"limit\":0,\"page\":0,\"sorts\":1}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1471', 'admin', '管理员', '修改字典', 'http://localhost:8888/rest/dict/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:45:04', '30', 'POST', 'application/json;charset=UTF-8', '{\"data_key\":\"2\",\"data_type\":\"sex\",\"data_value\":\"女\",\"description\":\"\",\"id\":10,\"limit\":0,\"page\":0,\"sorts\":2}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1472', 'admin', '管理员', '新增部门', 'http://localhost:8888/rest/department/add', '0:0:0:0:0:0:0:1', '2019-10-26 08:49:56', '23', 'POST', 'application/json;charset=UTF-8', '{\"deleted\":0,\"name\":\"开发1\",\"parentId\":18,\"parentName\":\"快递系统研发部\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1473', 'admin', '管理员', '修改部门', 'http://localhost:8888/rest/department/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:50:14', '31', 'POST', 'application/json;charset=UTF-8', '{\"id\":26,\"name\":\"开发部门1\",\"parentId\":18,\"parentName\":\"快递系统研发部\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1474', 'admin', '管理员', '新增部门', 'http://localhost:8888/rest/department/add', '0:0:0:0:0:0:0:1', '2019-10-26 08:50:27', '17', 'POST', 'application/json;charset=UTF-8', '{\"deleted\":0,\"name\":\"小组1\",\"parentId\":26,\"parentName\":\"开发部门1\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1475', 'admin', '管理员', '修改部门', 'http://localhost:8888/rest/department/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:50:31', '40', 'POST', 'application/json;charset=UTF-8', '{\"id\":27,\"name\":\"小组111111\",\"parentId\":26,\"parentName\":\"开发部门1\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1476', 'admin', '管理员', '修改部门', 'http://localhost:8888/rest/department/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:50:45', '30', 'POST', 'application/json;charset=UTF-8', '{\"id\":27,\"name\":\"小组是对方是否都是发\",\"parentId\":26,\"parentName\":\"开发部门1\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1477', 'admin', '管理员', '修改部门', 'http://localhost:8888/rest/department/update', '0:0:0:0:0:0:0:1', '2019-10-26 08:50:50', '33', 'POST', 'application/json;charset=UTF-8', '{\"childrens\":[{\"id\":27,\"name\":\"小组是对方是否都是发\",\"parentId\":26,\"root\":false}],\"id\":26,\"name\":\"开发部门大师法是否\",\"parentId\":18,\"parentName\":\"快递系统研发部\",\"root\":false}', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1478', 'admin', '管理员', '删除部门', 'http://localhost:8888/rest/department/delete', '0:0:0:0:0:0:0:1', '2019-10-26 08:52:18', '33', 'GET', null, 'id=27', '{\"code\":20000}', '1');
+INSERT INTO `t_web_logs` VALUES ('1479', 'admin', '管理员', '删除部门', 'http://localhost:8888/rest/department/delete', '0:0:0:0:0:0:0:1', '2019-10-26 08:52:20', '44', 'GET', null, 'id=26', '{\"code\":20000}', '1');
 
 -- ----------------------------
 -- Table structure for `t_web_right`
@@ -420,7 +521,7 @@ CREATE TABLE `t_web_role` (
 -- ----------------------------
 INSERT INTO `t_web_role` VALUES ('1', 'admin', null, '2', '超级管理员');
 INSERT INTO `t_web_role` VALUES ('2', 'editor', null, '1', '系统演示角色');
-INSERT INTO `t_web_role` VALUES ('11', 'test', null, '5', 'test1');
+INSERT INTO `t_web_role` VALUES ('11', 'test', null, '5', '测试角色');
 
 -- ----------------------------
 -- Table structure for `t_web_role_dept`
@@ -448,91 +549,92 @@ CREATE TABLE `t_web_role_right` (
   `role_id` int(11) NOT NULL,
   `right_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1220 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1301 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_role_right
 -- ----------------------------
-INSERT INTO `t_web_role_right` VALUES ('1140', '1', '1');
-INSERT INTO `t_web_role_right` VALUES ('1141', '1', '36');
-INSERT INTO `t_web_role_right` VALUES ('1142', '1', '37');
-INSERT INTO `t_web_role_right` VALUES ('1143', '1', '8');
-INSERT INTO `t_web_role_right` VALUES ('1144', '1', '9');
-INSERT INTO `t_web_role_right` VALUES ('1145', '1', '16');
-INSERT INTO `t_web_role_right` VALUES ('1146', '1', '17');
-INSERT INTO `t_web_role_right` VALUES ('1147', '1', '18');
-INSERT INTO `t_web_role_right` VALUES ('1148', '1', '19');
-INSERT INTO `t_web_role_right` VALUES ('1149', '1', '10');
-INSERT INTO `t_web_role_right` VALUES ('1150', '1', '43');
-INSERT INTO `t_web_role_right` VALUES ('1151', '1', '20');
-INSERT INTO `t_web_role_right` VALUES ('1152', '1', '21');
-INSERT INTO `t_web_role_right` VALUES ('1153', '1', '22');
-INSERT INTO `t_web_role_right` VALUES ('1154', '1', '23');
-INSERT INTO `t_web_role_right` VALUES ('1155', '1', '11');
-INSERT INTO `t_web_role_right` VALUES ('1156', '1', '24');
-INSERT INTO `t_web_role_right` VALUES ('1157', '1', '25');
-INSERT INTO `t_web_role_right` VALUES ('1158', '1', '26');
-INSERT INTO `t_web_role_right` VALUES ('1159', '1', '27');
-INSERT INTO `t_web_role_right` VALUES ('1160', '1', '13');
-INSERT INTO `t_web_role_right` VALUES ('1161', '1', '28');
-INSERT INTO `t_web_role_right` VALUES ('1162', '1', '29');
-INSERT INTO `t_web_role_right` VALUES ('1163', '1', '30');
-INSERT INTO `t_web_role_right` VALUES ('1164', '1', '31');
-INSERT INTO `t_web_role_right` VALUES ('1165', '1', '41');
-INSERT INTO `t_web_role_right` VALUES ('1166', '1', '32');
-INSERT INTO `t_web_role_right` VALUES ('1167', '1', '33');
-INSERT INTO `t_web_role_right` VALUES ('1168', '1', '34');
-INSERT INTO `t_web_role_right` VALUES ('1169', '1', '35');
-INSERT INTO `t_web_role_right` VALUES ('1170', '1', '40');
-INSERT INTO `t_web_role_right` VALUES ('1171', '1', '42');
-INSERT INTO `t_web_role_right` VALUES ('1172', '1', '5');
-INSERT INTO `t_web_role_right` VALUES ('1173', '1', '6');
-INSERT INTO `t_web_role_right` VALUES ('1174', '1', '7');
-INSERT INTO `t_web_role_right` VALUES ('1175', '1', '2');
-INSERT INTO `t_web_role_right` VALUES ('1176', '1', '14');
-INSERT INTO `t_web_role_right` VALUES ('1177', '1', '4');
-INSERT INTO `t_web_role_right` VALUES ('1178', '11', '1');
-INSERT INTO `t_web_role_right` VALUES ('1179', '11', '5');
-INSERT INTO `t_web_role_right` VALUES ('1180', '11', '6');
-INSERT INTO `t_web_role_right` VALUES ('1181', '11', '14');
-INSERT INTO `t_web_role_right` VALUES ('1182', '2', '1');
-INSERT INTO `t_web_role_right` VALUES ('1183', '2', '36');
-INSERT INTO `t_web_role_right` VALUES ('1184', '2', '37');
-INSERT INTO `t_web_role_right` VALUES ('1185', '2', '8');
-INSERT INTO `t_web_role_right` VALUES ('1186', '2', '9');
-INSERT INTO `t_web_role_right` VALUES ('1187', '2', '16');
-INSERT INTO `t_web_role_right` VALUES ('1188', '2', '17');
-INSERT INTO `t_web_role_right` VALUES ('1189', '2', '18');
-INSERT INTO `t_web_role_right` VALUES ('1190', '2', '19');
-INSERT INTO `t_web_role_right` VALUES ('1191', '2', '10');
-INSERT INTO `t_web_role_right` VALUES ('1192', '2', '43');
-INSERT INTO `t_web_role_right` VALUES ('1193', '2', '20');
-INSERT INTO `t_web_role_right` VALUES ('1194', '2', '21');
-INSERT INTO `t_web_role_right` VALUES ('1195', '2', '22');
-INSERT INTO `t_web_role_right` VALUES ('1196', '2', '23');
-INSERT INTO `t_web_role_right` VALUES ('1197', '2', '11');
-INSERT INTO `t_web_role_right` VALUES ('1198', '2', '24');
-INSERT INTO `t_web_role_right` VALUES ('1199', '2', '25');
-INSERT INTO `t_web_role_right` VALUES ('1200', '2', '26');
-INSERT INTO `t_web_role_right` VALUES ('1201', '2', '27');
-INSERT INTO `t_web_role_right` VALUES ('1202', '2', '13');
-INSERT INTO `t_web_role_right` VALUES ('1203', '2', '28');
-INSERT INTO `t_web_role_right` VALUES ('1204', '2', '29');
-INSERT INTO `t_web_role_right` VALUES ('1205', '2', '30');
-INSERT INTO `t_web_role_right` VALUES ('1206', '2', '31');
-INSERT INTO `t_web_role_right` VALUES ('1207', '2', '41');
-INSERT INTO `t_web_role_right` VALUES ('1208', '2', '32');
-INSERT INTO `t_web_role_right` VALUES ('1209', '2', '33');
-INSERT INTO `t_web_role_right` VALUES ('1210', '2', '34');
-INSERT INTO `t_web_role_right` VALUES ('1211', '2', '35');
-INSERT INTO `t_web_role_right` VALUES ('1212', '2', '40');
-INSERT INTO `t_web_role_right` VALUES ('1213', '2', '42');
-INSERT INTO `t_web_role_right` VALUES ('1214', '2', '5');
-INSERT INTO `t_web_role_right` VALUES ('1215', '2', '6');
-INSERT INTO `t_web_role_right` VALUES ('1216', '2', '7');
-INSERT INTO `t_web_role_right` VALUES ('1217', '2', '2');
-INSERT INTO `t_web_role_right` VALUES ('1218', '2', '14');
-INSERT INTO `t_web_role_right` VALUES ('1219', '2', '4');
+INSERT INTO `t_web_role_right` VALUES ('1220', '11', '1');
+INSERT INTO `t_web_role_right` VALUES ('1221', '11', '5');
+INSERT INTO `t_web_role_right` VALUES ('1222', '11', '6');
+INSERT INTO `t_web_role_right` VALUES ('1223', '11', '14');
+INSERT INTO `t_web_role_right` VALUES ('1224', '1', '1');
+INSERT INTO `t_web_role_right` VALUES ('1225', '1', '36');
+INSERT INTO `t_web_role_right` VALUES ('1226', '1', '37');
+INSERT INTO `t_web_role_right` VALUES ('1227', '1', '8');
+INSERT INTO `t_web_role_right` VALUES ('1228', '1', '9');
+INSERT INTO `t_web_role_right` VALUES ('1229', '1', '16');
+INSERT INTO `t_web_role_right` VALUES ('1230', '1', '17');
+INSERT INTO `t_web_role_right` VALUES ('1231', '1', '18');
+INSERT INTO `t_web_role_right` VALUES ('1232', '1', '19');
+INSERT INTO `t_web_role_right` VALUES ('1233', '1', '10');
+INSERT INTO `t_web_role_right` VALUES ('1234', '1', '43');
+INSERT INTO `t_web_role_right` VALUES ('1235', '1', '20');
+INSERT INTO `t_web_role_right` VALUES ('1236', '1', '21');
+INSERT INTO `t_web_role_right` VALUES ('1237', '1', '22');
+INSERT INTO `t_web_role_right` VALUES ('1238', '1', '23');
+INSERT INTO `t_web_role_right` VALUES ('1239', '1', '11');
+INSERT INTO `t_web_role_right` VALUES ('1240', '1', '24');
+INSERT INTO `t_web_role_right` VALUES ('1241', '1', '25');
+INSERT INTO `t_web_role_right` VALUES ('1242', '1', '26');
+INSERT INTO `t_web_role_right` VALUES ('1243', '1', '27');
+INSERT INTO `t_web_role_right` VALUES ('1244', '1', '13');
+INSERT INTO `t_web_role_right` VALUES ('1245', '1', '28');
+INSERT INTO `t_web_role_right` VALUES ('1246', '1', '29');
+INSERT INTO `t_web_role_right` VALUES ('1247', '1', '30');
+INSERT INTO `t_web_role_right` VALUES ('1248', '1', '31');
+INSERT INTO `t_web_role_right` VALUES ('1249', '1', '41');
+INSERT INTO `t_web_role_right` VALUES ('1250', '1', '44');
+INSERT INTO `t_web_role_right` VALUES ('1251', '1', '45');
+INSERT INTO `t_web_role_right` VALUES ('1252', '1', '46');
+INSERT INTO `t_web_role_right` VALUES ('1253', '1', '32');
+INSERT INTO `t_web_role_right` VALUES ('1254', '1', '33');
+INSERT INTO `t_web_role_right` VALUES ('1255', '1', '34');
+INSERT INTO `t_web_role_right` VALUES ('1256', '1', '35');
+INSERT INTO `t_web_role_right` VALUES ('1257', '1', '40');
+INSERT INTO `t_web_role_right` VALUES ('1258', '1', '42');
+INSERT INTO `t_web_role_right` VALUES ('1259', '1', '5');
+INSERT INTO `t_web_role_right` VALUES ('1260', '1', '6');
+INSERT INTO `t_web_role_right` VALUES ('1261', '1', '7');
+INSERT INTO `t_web_role_right` VALUES ('1262', '1', '2');
+INSERT INTO `t_web_role_right` VALUES ('1263', '1', '14');
+INSERT INTO `t_web_role_right` VALUES ('1264', '1', '4');
+INSERT INTO `t_web_role_right` VALUES ('1265', '2', '1');
+INSERT INTO `t_web_role_right` VALUES ('1266', '2', '36');
+INSERT INTO `t_web_role_right` VALUES ('1267', '2', '37');
+INSERT INTO `t_web_role_right` VALUES ('1268', '2', '8');
+INSERT INTO `t_web_role_right` VALUES ('1269', '2', '9');
+INSERT INTO `t_web_role_right` VALUES ('1270', '2', '16');
+INSERT INTO `t_web_role_right` VALUES ('1271', '2', '17');
+INSERT INTO `t_web_role_right` VALUES ('1272', '2', '18');
+INSERT INTO `t_web_role_right` VALUES ('1273', '2', '19');
+INSERT INTO `t_web_role_right` VALUES ('1274', '2', '10');
+INSERT INTO `t_web_role_right` VALUES ('1275', '2', '43');
+INSERT INTO `t_web_role_right` VALUES ('1276', '2', '20');
+INSERT INTO `t_web_role_right` VALUES ('1277', '2', '21');
+INSERT INTO `t_web_role_right` VALUES ('1278', '2', '22');
+INSERT INTO `t_web_role_right` VALUES ('1279', '2', '23');
+INSERT INTO `t_web_role_right` VALUES ('1280', '2', '11');
+INSERT INTO `t_web_role_right` VALUES ('1281', '2', '24');
+INSERT INTO `t_web_role_right` VALUES ('1282', '2', '25');
+INSERT INTO `t_web_role_right` VALUES ('1283', '2', '26');
+INSERT INTO `t_web_role_right` VALUES ('1284', '2', '27');
+INSERT INTO `t_web_role_right` VALUES ('1285', '2', '13');
+INSERT INTO `t_web_role_right` VALUES ('1286', '2', '28');
+INSERT INTO `t_web_role_right` VALUES ('1287', '2', '29');
+INSERT INTO `t_web_role_right` VALUES ('1288', '2', '30');
+INSERT INTO `t_web_role_right` VALUES ('1289', '2', '31');
+INSERT INTO `t_web_role_right` VALUES ('1290', '2', '41');
+INSERT INTO `t_web_role_right` VALUES ('1291', '2', '32');
+INSERT INTO `t_web_role_right` VALUES ('1292', '2', '33');
+INSERT INTO `t_web_role_right` VALUES ('1293', '2', '40');
+INSERT INTO `t_web_role_right` VALUES ('1294', '2', '42');
+INSERT INTO `t_web_role_right` VALUES ('1295', '2', '5');
+INSERT INTO `t_web_role_right` VALUES ('1296', '2', '6');
+INSERT INTO `t_web_role_right` VALUES ('1297', '2', '7');
+INSERT INTO `t_web_role_right` VALUES ('1298', '2', '2');
+INSERT INTO `t_web_role_right` VALUES ('1299', '2', '14');
+INSERT INTO `t_web_role_right` VALUES ('1300', '2', '4');
 
 -- ----------------------------
 -- Table structure for `t_web_user`
@@ -557,23 +659,9 @@ CREATE TABLE `t_web_user` (
 -- ----------------------------
 INSERT INTO `t_web_user` VALUES ('1', 'admin', 'A66ABB5684C45962D887564F08346E8D', '管理员', '17601269', '2019-09-07 10:08:25', '1', '4', null, null);
 INSERT INTO `t_web_user` VALUES ('2', 'editor', 'E10ADC3949BA59ABBE56E057F20F883E', '测试员1', '121212121212', '2019-09-09 16:40:43', '1', '16', '', null);
-INSERT INTO `t_web_user` VALUES ('2a1d17d2f4184e238816fd8b96195a3e', '111', 'C4CA4238A0B923820DCC509A6F75849B', '1', '', '2019-09-17 15:57:10', '0', '8', '', null);
-INSERT INTO `t_web_user` VALUES ('4b452255b3be4fc6829e6db2922257e1', 'gaoyueb@dcits.com', '96E79218965EB72C92A549DD5A330112', 'dogao', '13920502585', '2019-10-17 09:41:32', '0', null, '23@qq.com', null);
-INSERT INTO `t_web_user` VALUES ('5029d7aa882546839b6dac1f5b5c1ef7', '1', 'C4CA4238A0B923820DCC509A6F75849B', '1', '', '2019-09-18 10:21:42', '0', '2', '', null);
-INSERT INTO `t_web_user` VALUES ('54136c2416984fa196f970d715e807e1', 'gaoyueb@dcits.com', '96E79218965EB72C92A549DD5A330112', 'dogao', '13920502585', '2019-10-17 09:41:23', '0', null, '23@qq.com', null);
-INSERT INTO `t_web_user` VALUES ('594f179c609945689def728c01ddf8f1', '3', 'ECCBC87E4B5CE2FE28308FD9F2A7BAF3', '3', '123456', '2019-09-17 16:00:10', '0', '11', null, null);
-INSERT INTO `t_web_user` VALUES ('6535f71edf3d4e5f9891426bda3de1a1', 'gaoyueb@dcits.com', '96E79218965EB72C92A549DD5A330112', 'dogao', '13920502585', '2019-10-17 09:41:16', '0', null, '23@qq.com', null);
-INSERT INTO `t_web_user` VALUES ('696413831f394ac7b502e828e9ccda3e', 'gaoyueb@dcits.com', '96E79218965EB72C92A549DD5A330112', 'dogao', '13920502585', '2019-10-17 09:41:11', '0', null, '23@qq.com', null);
-INSERT INTO `t_web_user` VALUES ('6b6f0cbdda8d464c90ac58e68a37694e', 'gaoyueb@dcits.com', '96E79218965EB72C92A549DD5A330112', 'dogao', '13920502585', '2019-10-17 09:41:28', '0', null, '23@qq.com', null);
-INSERT INTO `t_web_user` VALUES ('8dc0a90caeed4310a9c499ef3f1d3c1d', 'gaoyueb', '96E79218965EB72C92A549DD5A330112', '高越', '1', '2019-10-17 10:07:11', '0', null, '1', null);
-INSERT INTO `t_web_user` VALUES ('93bad36e94ab48ab977f9718147c573f', '6', '1679091C5A880FAF6FB5E6087EB1B2DC', '6', '', '2019-09-18 15:16:45', '0', '5', '', null);
-INSERT INTO `t_web_user` VALUES ('ab334041dc2c4786a7bddb49bf8b7816', '7', '8F14E45FCEEA167A5A36DEDD4BEA2543', '7', '', '2019-09-19 09:32:48', '0', '7', '', null);
-INSERT INTO `t_web_user` VALUES ('ad904a794a10434b8dec1de8ce23a288', '辉桑', 'E10ADC3949BA59ABBE56E057F20F883E', '辉桑', '1111111', '2019-09-18 13:47:51', '0', '12', null, null);
-INSERT INTO `t_web_user` VALUES ('b730512de92c4689a87ed0fdd1e2bffc', '666', 'E10ADC3949BA59ABBE56E057F20F883E', '66666', '', '2019-10-22 11:22:45', '0', '18', null, null);
-INSERT INTO `t_web_user` VALUES ('b88bb916dc054870ae124d92710ac3d3', '云哥1', 'E10ADC3949BA59ABBE56E057F20F883E', '云哥', '1760126', '2019-09-18 11:11:39', '0', '0', '', null);
-INSERT INTO `t_web_user` VALUES ('c2bd6773d48643a9ac4540a551ba6ffb', '用嗓', 'E10ADC3949BA59ABBE56E057F20F883E', '用嗓', '', '2019-09-18 15:16:13', '0', '13', '', null);
-INSERT INTO `t_web_user` VALUES ('dde9b279949e4e76ac3fff531d712227', '2', 'C81E728D9D4C2F636F067F89CC14862C', '2', '', '2019-09-17 15:57:33', '0', '6', '', null);
-INSERT INTO `t_web_user` VALUES ('fa350415ebcc43c2a86cc0cbad98a0a2', '5', 'E4DA3B7FBBCE2345D7772B0674A318D5', '5', '1111111', '2019-09-18 15:16:34', '0', '8', '', null);
+INSERT INTO `t_web_user` VALUES ('ad904a794a10434b8dec1de8ce23a288', '辉桑', 'E10ADC3949BA59ABBE56E057F20F883E', '辉桑', '1111111', '2019-09-18 13:47:51', '0', '20', null, null);
+INSERT INTO `t_web_user` VALUES ('b88bb916dc054870ae124d92710ac3d3', '云桑', 'E10ADC3949BA59ABBE56E057F20F883E', '云桑', '1760126', '2019-09-18 11:11:39', '0', '18', null, null);
+INSERT INTO `t_web_user` VALUES ('c2bd6773d48643a9ac4540a551ba6ffb', '用嗓', 'E10ADC3949BA59ABBE56E057F20F883E', '用嗓', '22222', '2019-09-18 15:16:13', '0', '8', null, null);
 
 -- ----------------------------
 -- Table structure for `t_web_user_role`
@@ -584,14 +672,11 @@ CREATE TABLE `t_web_user_role` (
   `user_id` varchar(32) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_user_role
 -- ----------------------------
-INSERT INTO `t_web_user_role` VALUES ('18', 'ad904a794a10434b8dec1de8ce23a288', '2');
-INSERT INTO `t_web_user_role` VALUES ('19', 'ad904a794a10434b8dec1de8ce23a288', '17');
-INSERT INTO `t_web_user_role` VALUES ('20', 'c2bd6773d48643a9ac4540a551ba6ffb', '2');
 INSERT INTO `t_web_user_role` VALUES ('22', '93bad36e94ab48ab977f9718147c573f', '2');
 INSERT INTO `t_web_user_role` VALUES ('39', 'ab334041dc2c4786a7bddb49bf8b7816', '2');
 INSERT INTO `t_web_user_role` VALUES ('40', 'ab334041dc2c4786a7bddb49bf8b7816', '8');
@@ -606,9 +691,10 @@ INSERT INTO `t_web_user_role` VALUES ('59', '8dc0a90caeed4310a9c499ef3f1d3c1d', 
 INSERT INTO `t_web_user_role` VALUES ('60', '1', '1');
 INSERT INTO `t_web_user_role` VALUES ('61', '1', '2');
 INSERT INTO `t_web_user_role` VALUES ('71', 'fa350415ebcc43c2a86cc0cbad98a0a2', '2');
-INSERT INTO `t_web_user_role` VALUES ('76', 'b88bb916dc054870ae124d92710ac3d3', '2');
-INSERT INTO `t_web_user_role` VALUES ('77', 'b88bb916dc054870ae124d92710ac3d3', '1');
 INSERT INTO `t_web_user_role` VALUES ('79', '2', '2');
 INSERT INTO `t_web_user_role` VALUES ('80', 'dde9b279949e4e76ac3fff531d712227', '11');
 INSERT INTO `t_web_user_role` VALUES ('82', '2a1d17d2f4184e238816fd8b96195a3e', '2');
 INSERT INTO `t_web_user_role` VALUES ('87', 'b730512de92c4689a87ed0fdd1e2bffc', '2');
+INSERT INTO `t_web_user_role` VALUES ('89', 'ad904a794a10434b8dec1de8ce23a288', '2');
+INSERT INTO `t_web_user_role` VALUES ('91', 'c2bd6773d48643a9ac4540a551ba6ffb', '2');
+INSERT INTO `t_web_user_role` VALUES ('93', 'b88bb916dc054870ae124d92710ac3d3', '2');

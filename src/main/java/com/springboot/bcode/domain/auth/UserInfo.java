@@ -33,8 +33,6 @@ public class UserInfo extends JqGridParam {
 
 	private String token;
 	private String deptName;// 部门名称
-	private Integer companyId;// 公司id
-	private String companyName;// 部门对应的总节点部门（总公司，医院，集团）
 	// 角色
 	private List<Role> roles;
 
@@ -42,8 +40,9 @@ public class UserInfo extends JqGridParam {
 	private List<Permission> menus;
 	// 用户拥有的功能权限
 	private List<Permission> permissions;
+
 	// 用户拥有的数据权限
-	private List<DataScope> datascopes;
+	private List<Integer> datascopes;
 
 	public String getPassword() {
 		return password;
@@ -101,11 +100,11 @@ public class UserInfo extends JqGridParam {
 		this.name = name;
 	}
 
-	public List<DataScope> getDatascopes() {
+	public List<Integer> getDatascopes() {
 		return datascopes;
 	}
 
-	public void setDatascopes(List<DataScope> datascopes) {
+	public void setDatascopes(List<Integer> datascopes) {
 		this.datascopes = datascopes;
 	}
 
@@ -117,28 +116,12 @@ public class UserInfo extends JqGridParam {
 		this.deptid = deptid;
 	}
 
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
 	public String getDeptName() {
 		return deptName;
 	}
 
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
-	}
-
-	public Integer getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Integer companyId) {
-		this.companyId = companyId;
 	}
 
 	public Date getCreateTime() {
@@ -196,6 +179,5 @@ public class UserInfo extends JqGridParam {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
-
 
 }

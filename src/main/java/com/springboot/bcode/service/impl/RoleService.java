@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springboot.bcode.dao.IDataScopeDao;
 import com.springboot.bcode.dao.IPermissionDao;
 import com.springboot.bcode.dao.IRoleDao;
 import com.springboot.bcode.dao.IUserDao;
@@ -29,8 +28,6 @@ public class RoleService implements IRoleService {
 	private IUserDao userDao;
 	@Autowired
 	private IRoleDao roleDao;
-	@Autowired
-	private IDataScopeDao dataScopeDao;
 
 	@Override
 	public JqGridPage<Role> queryPage(Role role) {

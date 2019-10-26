@@ -2,7 +2,9 @@ package com.springboot.bcode.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,6 @@ import com.springboot.bcode.domain.auth.Role;
 import com.springboot.bcode.domain.auth.UserInfo;
 import com.springboot.bcode.domain.auth.UserInfoVO;
 import com.springboot.bcode.domain.auth.UserRole;
-import com.springboot.bcode.service.IDataScopeService;
 import com.springboot.bcode.service.IDepartmentService;
 import com.springboot.bcode.service.IPermissionService;
 import com.springboot.bcode.service.IRoleService;
@@ -29,6 +30,7 @@ import com.springboot.common.utils.BeanUtils;
 import com.springboot.common.utils.MD5Utils;
 import com.springboot.common.utils.StringUtils;
 import com.springboot.common.utils.UUIDUtils;
+import com.springboot.core.algorithm.DepartmentRecursion;
 import com.springboot.core.web.mvc.JqGridPage;
 
 @Service
@@ -39,8 +41,6 @@ public class UserService implements IUserService {
 	private IRoleService roleService;
 	@Autowired
 	private IPermissionService rightService;
-	@Autowired
-	private IDataScopeService dataScopeService;
 	@Autowired
 	private IDepartmentService departmentService;
 
@@ -101,10 +101,13 @@ public class UserService implements IUserService {
 		if (roles == null || roles.isEmpty()) {
 			throw new AuthException("当前用户未分配角色");
 		}
-		user.setRoles(roles);
 
-		List<Permission> permissionList = rightService.queryOwnedRight(user
-				.getUid());
+		List<Integer> roleIds = new ArrayList<Integer>();
+		for (Role role : roles) {
+			roleIds.add(role.getId());
+		}
+		List<Permission> permissionList = rightService.queryByRole(roleIds
+				.toArray(new Integer[roleIds.size()]));
 
 		if (permissionList == null || permissionList.isEmpty()) {
 			throw new AuthException("当前用户为的角色未分配权限");
@@ -121,23 +124,60 @@ public class UserService implements IUserService {
 				permissions.add(perm);
 			}
 		}
-		// 用户数据权限
-		/*
-		 * List<DataScope> ownedDateScopeList = new ArrayList<DataScope>(); for
-		 * (Role role : roles) { ownedDateScopeList
-		 * .addAll(dataScopeService.queryByRole(role.getId())); } Set<DataScope>
-		 * ownedDatasocpeSet = new HashSet<DataScope>(); for (DataScope
-		 * dataScope : ownedDateScopeList) { ownedDatasocpeSet.add(dataScope); }
-		 * ownedDateScopeList = new ArrayList<DataScope>(ownedDatasocpeSet);
-		 */
-
-		// 更新用户的权限
-		// ownedMenuRightList = RightRecursion.recursion(ownedMenuRightList);
+		user.setRoles(roles);
 		user.setMenus(menus);
 		user.setPermissions(permissions);
-		// user.setOwnedDateScopeList(ownedDateScopeList);
+		user.setDatascopes(getDateScopes(user));
 		GlobalUser.setUserInfo(user);
 		return user;
+	}
+
+	/***
+	 * 获取角色对应的数据权限
+	 *
+	 * @param @param roles
+	 * @param @return 设定文件
+	 * @return List<Integer> 返回类型
+	 *
+	 */
+	public List<Integer> getDateScopes(UserInfo user) {
+		List<Integer> dataScopeList = new ArrayList<Integer>();
+		List<Department> deptAllList = departmentService.queryAll();
+		for (Role role : user.getRoles()) {
+			// 1用户自定义数据权限
+			if ("1".equals(role.getData_scope())) {
+				dataScopeList.addAll(roleService.queryDataScope(role.getId()));
+				// 2全部数据权限
+			} else if ("2".equals(role.getData_scope())) {
+				for (Department dept : deptAllList) {
+					dataScopeList.add(dept.getId());
+				}
+				// 3本部门数据权限
+			} else if ("3".equals(role.getData_scope())) {
+				dataScopeList.add(user.getDeptid());
+				// 4本部门及以下数据权限
+			} else if ("4".equals(role.getData_scope())) {
+				List<Department> selfAndAllChildList = DepartmentRecursion
+						.findSelfAndAllChild(user.getDeptid(), deptAllList);
+				for (Department dept : selfAndAllChildList) {
+					if (!dataScopeList.contains(dept.getId().toString())) {
+						dataScopeList.add(dept.getId());
+					}
+				}
+			}
+		}
+		if (dataScopeList.isEmpty()) {
+			// 5仅本人数据权限
+			return null;
+		}
+		// 去重复
+		Set<Integer> ownedSet = new HashSet<Integer>();
+		for (Integer id : dataScopeList) {
+			ownedSet.add(id);
+		}
+		dataScopeList = new ArrayList<Integer>(ownedSet);
+
+		return dataScopeList;
 	}
 
 	@Override
@@ -201,7 +241,7 @@ public class UserService implements IUserService {
 		if (vo.getRoleIds() == null || vo.getRoleIds().length == 0) {
 			throw new AuthException("请分配角色");
 		}
-		if(vo.getDeptid()==null){
+		if (vo.getDeptid() == null) {
 			throw new AuthException("请分配部门");
 		}
 
@@ -239,7 +279,7 @@ public class UserService implements IUserService {
 		if (vo.getRoleIds() == null || vo.getRoleIds().length == 0) {
 			throw new AuthException("请分配角色");
 		}
-		if(vo.getDeptid()==null){
+		if (vo.getDeptid() == null) {
 			throw new AuthException("请分配部门");
 		}
 		UserInfo user = userDao.select(vo.getUid());

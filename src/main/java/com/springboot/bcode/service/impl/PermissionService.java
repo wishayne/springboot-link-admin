@@ -13,7 +13,6 @@ import com.springboot.bcode.dao.IPermissionDao;
 import com.springboot.bcode.dao.IRoleDao;
 import com.springboot.bcode.dao.IUserDao;
 import com.springboot.bcode.domain.auth.Permission;
-import com.springboot.bcode.domain.auth.Role;
 import com.springboot.bcode.domain.auth.RolePermission;
 import com.springboot.bcode.service.IPermissionService;
 import com.springboot.common.exception.AuthException;
@@ -36,26 +35,11 @@ public class PermissionService implements IPermissionService {
 	}
 
 	@Override
-	public List<Permission> queryAllByRole(String roleId) {
-		if (StringUtils.isBlank(roleId)) {
-			throw new AuthException("角色roleId为空");
+	public List<Permission> queryByRole(Integer[] roleIds) {
+		if (roleIds == null) {
+			throw new AuthException("角色roleIds为空");
 		}
-		return rightDao.selectByRole(roleId);
-	}
-
-	@Override
-	public List<Permission> queryOwnedRight(String userId) {
-		List<Permission> owendRightList = new ArrayList<Permission>();
-
-		List<Role> owendRoleList = roleDao.selectByUserId(userId);
-		if (owendRoleList != null && !owendRoleList.isEmpty()) {
-			List<Integer> roleIds=new ArrayList<Integer>();
-			for (Role role : owendRoleList) {
-				roleIds.add(role.getId());
-			}
-			
-			owendRightList.addAll(rightDao.selectByRole(StringUtils.join(roleIds.toArray(), ",")));
-		}
+		List<Permission> owendRightList = rightDao.selectByRole(roleIds);
 		if (owendRightList == null || owendRightList.isEmpty()) {
 			return null;
 		}
@@ -105,7 +89,7 @@ public class PermissionService implements IPermissionService {
 		if (id == null) {
 			throw new AuthException("删除条件不能为空");
 		}
-       //删除角色权限
+		// 删除角色权限
 		RolePermission rolePermission = new RolePermission();
 		rolePermission.setPermId(id);
 		roleDao.delete(rolePermission);
