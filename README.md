@@ -8,22 +8,22 @@ springboot-link-admin 提供一个权限认证后端接口解决方案，它基�
 
 
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/1.png">
+  <img width="900" src="https://252956.github.io/assets/img/1.png">
 </p>
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/2.png">
+  <img width="900" src="https://252956.github.io/assets/img/2.png">
 </p>
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/3.png">
+  <img width="900" src="https://252956.github.io/assets/img/3.png">
 </p>
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/4.png">
+  <img width="900" src="https://252956.github.io/assets/img/4.png">
 </p>
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/5.png">
+  <img width="900" src="https://252956.github.io/assets/img/5.png">
 </p>
  <p align="center">
-  <img width="900" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/6.png">
+  <img width="900" src="https://252956.github.io/assets/img/6.png">
 </p>
 
 
@@ -54,7 +54,7 @@ git clone https://github.com/252956/springboot-link-admin.git
 ## 加入讨论组
 
  <p align="left">
-  <img width="300" src="https://raw.githubusercontent.com/252956/vue-link-admin/master/src/assets/websit/dingding.jpg">
+  <img width="300" src="https://252956.github.io/assets/img/dingding.jpg">
 </p>
 
 
