@@ -3,12 +3,12 @@ package com.springboot.bcode.domain.auth;
 import com.springboot.core.jdbc.annotation.Columns;
 import com.springboot.core.jdbc.annotation.Tables;
 
-@Tables(table = "t_web_role_right")
+@Tables(table = "t_web_role_permission")
 public class RolePermission {
 
 	@Columns(column = "role_id")
 	private Integer roleId;
-	@Columns(column = "right_id")
+	@Columns(column = "perm_id")
 	private Integer permId;
 
 	public Integer getRoleId() {

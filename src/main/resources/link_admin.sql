@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2019-10-26 15:15:15
+Date: 2019-11-01 16:37:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -134,7 +134,7 @@ CREATE TABLE `t_web_logs` (
   `response_result` varchar(2000) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1512 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1518 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_logs
@@ -252,17 +252,13 @@ DROP TABLE IF EXISTS `t_web_role_permission`;
 CREATE TABLE `t_web_role_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
-  `right_id` int(11) NOT NULL,
+  `perm_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1301 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1313 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_role_permission
 -- ----------------------------
-INSERT INTO `t_web_role_permission` VALUES ('1220', '11', '1');
-INSERT INTO `t_web_role_permission` VALUES ('1221', '11', '5');
-INSERT INTO `t_web_role_permission` VALUES ('1222', '11', '6');
-INSERT INTO `t_web_role_permission` VALUES ('1223', '11', '14');
 INSERT INTO `t_web_role_permission` VALUES ('1224', '1', '1');
 INSERT INTO `t_web_role_permission` VALUES ('1225', '1', '36');
 INSERT INTO `t_web_role_permission` VALUES ('1226', '1', '37');
@@ -340,6 +336,13 @@ INSERT INTO `t_web_role_permission` VALUES ('1297', '2', '7');
 INSERT INTO `t_web_role_permission` VALUES ('1298', '2', '2');
 INSERT INTO `t_web_role_permission` VALUES ('1299', '2', '14');
 INSERT INTO `t_web_role_permission` VALUES ('1300', '2', '4');
+INSERT INTO `t_web_role_permission` VALUES ('1306', '11', '1');
+INSERT INTO `t_web_role_permission` VALUES ('1307', '11', '5');
+INSERT INTO `t_web_role_permission` VALUES ('1308', '11', '6');
+INSERT INTO `t_web_role_permission` VALUES ('1309', '11', '7');
+INSERT INTO `t_web_role_permission` VALUES ('1310', '11', '2');
+INSERT INTO `t_web_role_permission` VALUES ('1311', '11', '14');
+INSERT INTO `t_web_role_permission` VALUES ('1312', '11', '4');
 
 -- ----------------------------
 -- Table structure for `t_web_user`
