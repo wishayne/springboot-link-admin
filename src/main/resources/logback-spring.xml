@@ -3,13 +3,14 @@
 	<!-- 文件输出格式 -->
 	<property name="PATTERN"
 		value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+	<!-- 本地部署修改 log日志位置 -->
 	<!-- dev文件路径 -->
-	<property name="DEV_FILE_PATH" value="c:/opt/logs/log" />
+	<property name="DEV_FILE_PATH" value="D:/logs/link-admin-log" />
 	<!-- test文件路径 -->
-	<property name="TEST_FILE_PATH" value="c:/opt/logs/log" />
+	<property name="TEST_FILE_PATH" value="D:/logs/link-admin-log" />
 	<!-- pro文件路径 -->
-	<property name="PRO_FILE_PATH" value="c:/opt/logs/log" />
-	<!-- SpringBoot 的 Logging 配置的级别有7个：日志级别从低到高分为：TRACE < DEBUG < INFO < WARN 
+	<property name="PRO_FILE_PATH" value="D:/logs/link-admin-log" />
+	<!-- SpringBoot 的 Logging 配置的级别有7个：日志级别从低到高分为：TRACE < DEBUG < INFO < WARN
 		< ERROR < FATAL -->
 	<!-- 开发环境 -->
 	<springProfile name="dev">

@@ -106,22 +106,6 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>link-admin</id>
-			<name>link-admin Repository</name>
-			<url>http://repo1.maven.apache.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
-
 	<build>
 		<plugins>
 			<plugin>
