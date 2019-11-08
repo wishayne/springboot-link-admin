@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50540
+Source Server Version : 80018
 Source Host           : localhost:3306
 Source Database       : link_admin
 
 Target Server Type    : MYSQL
-Target Server Version : 50540
+Target Server Version : 80018
 File Encoding         : 65001
 
-Date: 2019-11-01 16:37:08
+Date: 2019-11-09 05:09:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `t_video` (
   `createtime` datetime DEFAULT NULL,
   `url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of t_video
@@ -102,7 +102,7 @@ CREATE TABLE `t_web_dict` (
   `sorts` int(11) unsigned DEFAULT '1' COMMENT ' 顺序 ',
   `description` varchar(400) DEFAULT NULL COMMENT '数据描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of t_web_dict
@@ -160,24 +160,21 @@ CREATE TABLE `t_web_permission` (
   `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `cache` int(11) DEFAULT NULL,
   `hidden` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `parent_id` (`parent_id`),
+  CONSTRAINT `t_web_permission_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `t_web_permission` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_web_permission
 -- ----------------------------
+INSERT INTO `t_web_permission` VALUES ('0', '根', '0', '0', null, '/', null, null, null, null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('1', '首页', '0', '0', null, '/', null, null, '1', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('2', '文档', '0', '0', null, '/documentation', null, null, '200', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('4', '外链', '0', '0', null, 'https://github.com/252956/vue-link-admin', null, null, '202', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('5', '错误页面', '0', '0', null, '/error', null, null, '199', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('6', '401', '5', '0', null, '/error/401', null, null, '30', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('7', '404', '5', '0', null, '/error/404', null, null, '31', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('8', '系统权限', '0', '0', null, '/permission', null, null, '100', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('9', '用户管理', '8', '0', null, '/permission/user', null, null, '1', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('10', '角色管理', '8', '0', null, '/permission/role', null, null, '2', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('11', '权限管理', '8', '0', null, '/permission/permission', null, null, '3', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('13', '部门管理', '8', '0', null, '/permission/dept', null, null, '4', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('14', '图标', '0', '0', null, '/icon', null, null, '201', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('16', '查询用户', '9', '1', null, '/rest/user/list', null, null, '200', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('17', '新增用户', '9', '1', null, '/rest/user/add', null, null, '201', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('18', '修改用户', '9', '1', null, '/rest/user/update', null, null, '202', null, null, null, null, null, null);
@@ -190,23 +187,11 @@ INSERT INTO `t_web_permission` VALUES ('24', '权限查询', '11', '1', null, '/
 INSERT INTO `t_web_permission` VALUES ('25', '新增权限', '11', '1', null, '/rest/permission/add', null, null, '221', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('26', '修改权限', '11', '1', null, '/rest/permission/update', null, null, '222', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('27', '删除权限', '11', '1', null, '/rest/permission/delete', null, null, '223', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('28', '部门查询', '13', '1', null, '/rest/department/all', null, null, '240', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('29', '新增部门', '13', '1', null, '/rest/department/add', null, null, '241', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('30', '修改部门', '13', '1', null, '/rest/department/update', null, null, '242', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('31', '删除部门', '13', '1', null, '/rest/department/delete', null, null, '243', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('32', '系统监控', '0', '0', null, '/monitor', null, null, '101', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('33', '错误日志', '32', '0', null, '/monitor/error-log', null, null, '40', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('34', '业务日志', '32', '0', null, '/monitor/blog', null, null, '41', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('35', '查询', '34', '1', null, '/rest/logs/blog/list', null, null, null, null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('36', '视频+', '0', '0', null, '/video', null, null, '2', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('37', 'TikTok', '36', '0', null, '/video/tiktok', null, null, '10', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('40', '系统管理', '0', '0', null, '/system', null, null, '102', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('41', '数据字典', '8', '0', null, '/permission/dict', null, null, '5', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('42', '通知公告', '40', '0', null, '/system/notice', null, null, '1021', null, null, null, null, null, null);
 INSERT INTO `t_web_permission` VALUES ('43', '数据权限', '10', '1', null, '/rest/role/saveDataScope', null, null, '1', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('44', '新增', '41', '1', null, '/rest/dict/add', null, null, '1', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('45', '修改', '41', '1', null, '/rest/dict/update', null, null, '2', null, null, null, null, null, null);
-INSERT INTO `t_web_permission` VALUES ('46', '删除', '41', '1', null, '/rest/dict/delete', null, null, '3', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `t_web_role`
@@ -237,7 +222,7 @@ CREATE TABLE `t_web_role_dept` (
   `role_id` int(11) NOT NULL,
   `dept_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of t_web_role_dept

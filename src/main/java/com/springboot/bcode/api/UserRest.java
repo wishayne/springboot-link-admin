@@ -1,11 +1,5 @@
 package com.springboot.bcode.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.springboot.bcode.domain.auth.LoginVO;
 import com.springboot.bcode.domain.auth.ModifyPwdVO;
 import com.springboot.bcode.domain.auth.UserInfo;
@@ -18,10 +12,12 @@ import com.springboot.core.logger.OpertionBLog;
 import com.springboot.core.security.authorize.Requestauthorize;
 import com.springboot.core.web.mvc.BaseRest;
 import com.springboot.core.web.mvc.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户接口
- * 
+ *
  * @ClassName: UserRest
  * @Description: TODO(这里用一句话描述这个类的作用)
  * @author link
@@ -63,6 +59,27 @@ public class UserRest extends BaseRest {
 		ResponseResult rep = new ResponseResult();
 		try {
 			rep.setResult(userService.info());
+		} catch (AuthException e) {
+			rep.setCode(CODE_500);
+			rep.setMsg(e.getMessage());
+		} catch (Exception e) {
+			rep.setCode(CODE_500);
+			rep.setMsg("系统异常.请稍后再试");
+		}
+		return rep;
+	}
+
+	/**
+	 * 根据选择的角色id重新获取菜单列表
+	 *
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "newMenus")
+	public ResponseResult delete(@RequestParam("id") Integer id) {
+		ResponseResult rep = new ResponseResult();
+		try {
+			rep.setResult(userService.getMenuesByRoleId(id));
 		} catch (AuthException e) {
 			rep.setCode(CODE_500);
 			rep.setMsg(e.getMessage());
@@ -151,7 +168,7 @@ public class UserRest extends BaseRest {
 		return rep;
 
 	}
-	
+
 	@OpertionBLog(title = "更新用户状态")
 	@RequestMapping(value = "updateState", method = RequestMethod.POST)
 	public ResponseResult updateState(@RequestBody UserInfoVO vo) {
@@ -168,6 +185,6 @@ public class UserRest extends BaseRest {
 		return rep;
 
 	}
-	
+
 
 }

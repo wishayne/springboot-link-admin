@@ -1,11 +1,11 @@
 package com.springboot.bcode.domain.auth;
 
-import java.util.Date;
-import java.util.List;
-
 import com.springboot.core.jdbc.annotation.Columns;
 import com.springboot.core.jdbc.annotation.Tables;
 import com.springboot.core.web.mvc.JqGridParam;
+
+import java.util.Date;
+import java.util.List;
 
 @Tables(table = "t_web_user")
 public class UserInfo extends JqGridParam {
@@ -35,7 +35,7 @@ public class UserInfo extends JqGridParam {
 	private String deptName;// 部门名称
 	// 角色
 	private List<Role> roles;
-
+	private Role curRole;
 	// 用户的菜单
 	private List<Permission> menus;
 	// 用户拥有的功能权限
@@ -90,6 +90,14 @@ public class UserInfo extends JqGridParam {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Role getCurRole() {
+		return curRole;
+	}
+
+	public void setCurRole(Role curRole) {
+		this.curRole = curRole;
 	}
 
 	public String getName() {

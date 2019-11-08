@@ -1,24 +1,7 @@
 package com.springboot.bcode.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.springboot.bcode.dao.IUserDao;
-import com.springboot.bcode.domain.auth.Department;
-import com.springboot.bcode.domain.auth.LoginVO;
-import com.springboot.bcode.domain.auth.ModifyPwdVO;
-import com.springboot.bcode.domain.auth.Permission;
-import com.springboot.bcode.domain.auth.Role;
-import com.springboot.bcode.domain.auth.UserInfo;
-import com.springboot.bcode.domain.auth.UserInfoVO;
-import com.springboot.bcode.domain.auth.UserRole;
+import com.springboot.bcode.domain.auth.*;
 import com.springboot.bcode.service.IDepartmentService;
 import com.springboot.bcode.service.IPermissionService;
 import com.springboot.bcode.service.IRoleService;
@@ -32,6 +15,11 @@ import com.springboot.common.utils.StringUtils;
 import com.springboot.common.utils.UUIDUtils;
 import com.springboot.core.algorithm.DepartmentRecursion;
 import com.springboot.core.web.mvc.JqGridPage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
 
 @Service
 public class UserService implements IUserService {
@@ -102,12 +90,10 @@ public class UserService implements IUserService {
 			throw new AuthException("当前用户未分配角色");
 		}
 
-		List<Integer> roleIds = new ArrayList<Integer>();
-		for (Role role : roles) {
-			roleIds.add(role.getId());
-		}
-		List<Permission> permissionList = rightService.queryByRole(roleIds
-				.toArray(new Integer[roleIds.size()]));
+		//先改成默认获取第一角色的权限
+		Role curRole = roles.get(0);
+		Integer[] roleId = {curRole.getId()};
+		List<Permission> permissionList = rightService.queryByRole(roleId);
 
 		if (permissionList == null || permissionList.isEmpty()) {
 			throw new AuthException("当前用户为的角色未分配权限");
@@ -125,10 +111,35 @@ public class UserService implements IUserService {
 			}
 		}
 		user.setRoles(roles);
+		user.setCurRole(curRole);
 		user.setMenus(menus);
 		user.setPermissions(permissions);
 		user.setDatascopes(getDateScopes(user));
 		GlobalUser.setUserInfo(user);
+		return user;
+	}
+
+	@Override
+	public UserInfo getMenuesByRoleId(Integer id) {
+		// 判断用户数据是否为空
+		UserInfo user = GlobalUser.getUserInfo();
+		if (user == null) {
+			throw new AuthException("用户未登录");
+		}
+		Integer[] roleId = {id};
+		List<Permission> permissionList = rightService.queryByRole(roleId);
+
+		if (permissionList == null || permissionList.isEmpty()) {
+			throw new AuthException("当前用户为的角色未分配权限");
+		}
+		// 用户菜单
+		List<Permission> menus = new ArrayList<Permission>();
+		for (Permission perm : permissionList) {
+			if (perm.isMenu()) {
+				menus.add(perm);
+			}
+		}
+		user.setMenus(menus);
 		return user;
 	}
 

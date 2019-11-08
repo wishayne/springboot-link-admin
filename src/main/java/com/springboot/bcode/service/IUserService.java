@@ -14,6 +14,8 @@ public interface IUserService {
 
 	UserInfo info();
 
+	UserInfo getMenuesByRoleId(Integer id);
+
 	UserInfo find(String uid);
 
 	UserInfo find(UserInfo user);
@@ -25,7 +27,7 @@ public interface IUserService {
 	boolean update(UserInfoVO vo);
 
 	boolean delete(String uid);
-	
+
 	boolean updateState(UserInfoVO vo);
 
 }
